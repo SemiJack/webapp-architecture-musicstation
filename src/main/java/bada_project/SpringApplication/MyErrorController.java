@@ -15,7 +15,7 @@ public class MyErrorController implements ErrorController {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 
         if(status != null){
-            Integer statusCode = Integer.valueOf(status.toString());
+            Integer statusCode = Integer.parseInt(status.toString());
 
             if(statusCode == HttpStatus.FORBIDDEN.value()){
                 return "redirect:https://http.cat/403";
