@@ -1,5 +1,6 @@
 package bada_project.SpringApplication;
 
+import bada_project.SpringApplication.database.AdresDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
@@ -50,5 +51,5 @@ public class AppController implements WebMvcConfigurer{
 
 
     @Autowired
-    private DAO adresDAO;
+    private AdresDAO adresDAO;
 }
