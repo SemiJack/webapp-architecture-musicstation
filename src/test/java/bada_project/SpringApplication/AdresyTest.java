@@ -1,7 +1,7 @@
 package bada_project.SpringApplication;
 
-import bada_project.SpringApplication.database.Adres;
-import bada_project.SpringApplication.database.AdresDAO;
+import bada_project.SpringApplication.model.Adres;
+import bada_project.SpringApplication.dao.AdresDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -24,11 +24,16 @@ class AdresyTest {
         adresDao = new AdresDAO(new JdbcTemplate(dataSource));
     }
 
-//    @Test
-//    void testList(){
-//        List<Adres> listAdres = adresDao.list();
-//        assertFalse(listAdres.isEmpty());
-//    }
+    @Test
+    void testGetAll(){
+        List<Adres> listAdres = adresDao.getAll();
+        assertFalse(listAdres.isEmpty());
+    }
 
+    @Test
+    void testSave() {
+        Adres adres = new Adres("Bydgoszcz", "Kopernika", "320");
+        adresDao.saveOrUpdate(adres);
+    }
 
 }

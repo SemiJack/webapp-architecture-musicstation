@@ -1,4 +1,4 @@
-package bada_project.SpringApplication.database;
+package bada_project.SpringApplication.model;
 
 public class Stanowisko {
     private int nr_stanowiska;

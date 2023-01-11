@@ -1,4 +1,4 @@
-package bada_project.SpringApplication.database;
+package bada_project.SpringApplication.model;
 
 public class Adres {
     private int nr_adresu;
@@ -13,6 +13,12 @@ public class Adres {
     public Adres(int nr_adresu, String miasto, String ulica, String nr_lokalu) {
         super();
         this.nr_adresu = nr_adresu;
+        this.miasto = miasto;
+        this.ulica = ulica;
+        this.nr_lokalu = nr_lokalu;
+    }
+    public Adres(String miasto, String ulica, String nr_lokalu) {
+        super();
         this.miasto = miasto;
         this.ulica = ulica;
         this.nr_lokalu = nr_lokalu;

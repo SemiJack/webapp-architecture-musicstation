@@ -1,6 +1,6 @@
 package bada_project.SpringApplication;
 
-import bada_project.SpringApplication.database.AdresDAO;
+import bada_project.SpringApplication.dao.AdresDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
