@@ -1,40 +1,18 @@
 package bada_project.SpringApplication;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import bada_project.SpringApplication.database.Adres;
 
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public class DAO {
-    private JdbcTemplate jdbcTemplate;
-    @Autowired
-    public DAO(JdbcTemplate jdbcTemplate){
-        super();
-        this.jdbcTemplate = jdbcTemplate;
-    }
-    public List<Adres> list(){
-        String sql = "SELECT * FROM Adresy";
+public interface DAO<T> {
+    Optional<T> get(long id);
 
-        List<Adres> listAdres = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Adres.class));
-        return listAdres;
-    }
+    List<T> getAll();
 
-    public void save(Adres adres){
+    void save(T t);
 
-    }
+    void update(T t, String[] params);
 
-    public Adres get(int id){
-        return null;
-    }
-
-    public void update(Adres adres){
-
-    }
-
-    public void delete(int id){
-
-    }
+    void delete(T t);
 }

@@ -1,4 +1,4 @@
-package bada_project.SpringApplication;
+package bada_project.SpringApplication.database;
 
 public class Adres {
     private int nr_adresu;
@@ -6,10 +6,11 @@ public class Adres {
     private String ulica;
     private String nr_lokalu;
 
-    public Adres(){
+    public Adres() {
 
     }
-    public Adres(int nr_adresu, String miasto, String ulica, String nr_lokalu){
+
+    public Adres(int nr_adresu, String miasto, String ulica, String nr_lokalu) {
         super();
         this.nr_adresu = nr_adresu;
         this.miasto = miasto;
@@ -51,10 +52,11 @@ public class Adres {
 
     @Override
     public String toString() {
-        return "Adres [nr_adresu=" + nr_adresu +
+        return "Adres{" +
+                "nr_adresu=" + nr_adresu +
                 ", miasto='" + miasto + '\'' +
                 ", ulica='" + ulica + '\'' +
                 ", nr_lokalu='" + nr_lokalu + '\'' +
-                ']';
+                '}';
     }
 }
