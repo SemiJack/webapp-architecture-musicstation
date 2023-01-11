@@ -11,6 +11,10 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * ATTENTION!! Tricky it is ;) Before testing insert proper values according to actual database state.
+ * Indexes always increase. Example: even if you delete record with id 25 next id will be 26.
+ */
 class AdresyTest {
     private AdresDAO adresDao;
     @BeforeEach
@@ -31,9 +35,21 @@ class AdresyTest {
     }
 
     @Test
-    void testSave() {
-        Adres adres = new Adres("Bydgoszcz", "Kopernika", "320");
+    void testSaveOrUpdate() {
+        Adres adres = new Adres("Łódź", "Rurkowa", "3B");
         adresDao.saveOrUpdate(adres);
     }
+
+    @Test
+    void testGet(){
+        adresDao.get(26);
+    }
+
+
+    @Test
+    void testDelete(){
+        adresDao.delete(26);
+    }
+
 
 }

@@ -19,12 +19,21 @@ public class AdresDAO implements DAO<Adres> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    /**
+     * Return one Adres object with specified nr_adresu.
+     * @param nr_adresu
+     * @return Adres object
+     */
     @Override
     public Adres get(int nr_adresu) {
         String sql = "SELECT * FROM adresy WHERE nr_adresu=" + nr_adresu;
         return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Adres.class));
     }
 
+    /**
+     * Get all records from table
+     * @return list of all records
+     */
     @Override
     public List<Adres> getAll() {
         String sql = "SELECT * FROM Adresy";
@@ -33,7 +42,6 @@ public class AdresDAO implements DAO<Adres> {
 
     /**
      * Add new or update record to table. Auto set unique key value.
-     *
      * @param adres
      */
     @Override
@@ -47,14 +55,12 @@ public class AdresDAO implements DAO<Adres> {
             String sql = "INSERT INTO adresy (miasto, ulica, nr_lokalu) VALUES(?,?,?)";
             jdbcTemplate.update(sql,adres.getMiasto(),adres.getUlica(),adres.getNr_lokalu());
         }
-//        SimpleJdbcInsert insertActor = new SimpleJdbcInsert(jdbcTemplate);
-//        insertActor.withTableName("Adresy").usingColumns("miasto", "ulica", "nr_lokalu");
-//        insertActor.usingGeneratedKeyColumns("nr_adresu");
-//        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(adres);
-//        Number key = insertActor.executeAndReturnKey(param);
-//        adres.setNr_adresu(key.intValue());
     }
 
+    /**
+     * Delete from database
+     * @param nr_adresu
+     */
     @Override
     public void delete(int  nr_adresu) {
         String sql = "DELETE FROM adresy WHERE nr_adresu=?";
