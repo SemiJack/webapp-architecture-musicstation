@@ -1,23 +1,23 @@
 package bada_project.SpringApplication.model;
 
-public class Adres {
+public class Address {
     private int nr_adresu;
     private String miasto;
     private String ulica;
     private String nr_lokalu;
 
-    public Adres() {
+    public Address() {
 
     }
 
-    public Adres(int nr_adresu, String miasto, String ulica, String nr_lokalu) {
+    public Address(int nr_adresu, String miasto, String ulica, String nr_lokalu) {
         super();
         this.nr_adresu = nr_adresu;
         this.miasto = miasto;
         this.ulica = ulica;
         this.nr_lokalu = nr_lokalu;
     }
-    public Adres(String miasto, String ulica, String nr_lokalu) {
+    public Address(String miasto, String ulica, String nr_lokalu) {
         super();
         this.miasto = miasto;
         this.ulica = ulica;

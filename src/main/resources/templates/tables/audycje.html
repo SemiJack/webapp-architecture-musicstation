@@ -3,11 +3,11 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Autorzy Page</title>
+    <title>Widok - Audycje</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
-<!-- Navigation -->
+<!-- Header -->
 <div th:replace="fragment/header :: header"></div>
 
 <div class="container">
@@ -36,10 +36,7 @@
         </table>
     </div>
 </div>
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/script.js}"></script>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
 </body>
 </html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+<div align="center">
+    <h1> Edytuj</h1>
+    <br/>
+    <form action="#" th:action="@{/addresses/update/save}" th:object="${address}" method="post">
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>ID</td>
+                <td><input type="text" th:field="*{nr_adresu}" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Miasto</td>
+                <td><input type="text" th:field="*{miasto}"></td>
+            </tr>
+
+            <tr>
+                <td>Ulica</td>
+                <td><input type="text" th:field="*{ulica}"></td>
+            </tr>
+
+            <tr>
+                <td>Numer lokalu</td>
+                <td><input type="text" th:field="*{nr_lokalu}"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button type="submit">Zaktualizuj</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

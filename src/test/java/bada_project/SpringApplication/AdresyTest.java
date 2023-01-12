@@ -1,10 +1,9 @@
 package bada_project.SpringApplication;
 
+import bada_project.SpringApplication.dao.AddressDAO;
 import bada_project.SpringApplication.dao.AudycjaDAO;
-import bada_project.SpringApplication.model.Adres;
-import bada_project.SpringApplication.dao.AdresDAO;
+import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Audycja;
-import bada_project.SpringApplication.model.Autor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Indexes always increase. Example: even if you delete record with id 25 next id will be 26.
  */
 class AdresyTest {
-    private AudycjaDAO audycjaDAO;
+    private AddressDAO addressDAO;
     @BeforeEach
     void setup() throws Exception{
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -28,20 +27,20 @@ class AdresyTest {
         dataSource.setPassword("BADAGRB01");
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 
-        audycjaDAO = new AudycjaDAO(new JdbcTemplate(dataSource));
-    }
-
-    @Test
-    void testGetAll(){
-        List<Audycja> listAudycja = audycjaDAO.getAll();
-        assertFalse(listAudycja.isEmpty());
+        addressDAO = new AddressDAO(new JdbcTemplate(dataSource));
     }
 
 //    @Test
-//    void testSaveOrUpdate() {
-//        Adres adres = new Adres("Łódź", "Rurkowa", "3B");
-//        adresDao.saveOrUpdate(adres);
+//    void testGetAll(){
+//        List<Audycja> listAudycja = audycjaDAO.getAll();
+//        assertFalse(listAudycja.isEmpty());
 //    }
+
+    @Test
+    void testSaveOrUpdate() {
+        Address address = new Address("Łódź", "Rurkowa", "34");
+        addressDAO.saveOrUpdate(address);
+    }
 //
 //    @Test
 //    void testGet(){

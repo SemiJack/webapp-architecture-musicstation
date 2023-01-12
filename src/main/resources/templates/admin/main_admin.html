@@ -8,6 +8,7 @@
 
 </head>
 <body>
+<!-- Header -->
 <div th:replace="fragment/header :: header"></div>
 
 <div class="container">
@@ -24,17 +25,15 @@
 
                 <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Logout
                 </button>
-                <a class="btn btn-primary" href="/audycje" role="button" >Audycje</a>
             </form>
+            <a class="btn btn-primary" href="/addresses/add" role="button" >DODAJ</a>
+            <a class="btn btn-primary" href="/addresses/update" role="button" >EDYTUJ</a>
+            <a class="btn btn-primary" href="/addresses/show" role="button" >WYŚWIETL</a>
+            <a class="btn btn-primary" href="/addresses/delete" role="button" >USUŃ</a>
         </div>
     </div>
 </div>
-
-
-<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{/js/script.js}"></script>
-
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
 </body>
 </html>

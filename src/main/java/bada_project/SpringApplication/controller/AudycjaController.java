@@ -16,10 +16,10 @@ public class AudycjaController {
     @Autowired
     private AudycjaDAO audycjaDAO;
 
-    @GetMapping("/audycje")
+    @GetMapping("/tables/audycje")
     public String viewTableAudycje(Model model){
         List<Audycja> audycje = audycjaDAO.getAll();
         model.addAttribute("audycje",audycje);
-        return "table/audycje";
+        return "tables/audycje";
     }
 }

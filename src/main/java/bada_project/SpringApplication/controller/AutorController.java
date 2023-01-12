@@ -15,10 +15,10 @@ public class AutorController {
     @Autowired
     private AutorDAO autorDAO;
 
-    @GetMapping("/autorzy")
+    @GetMapping("/tables/autorzy")
     public String viewTableAutorzy(Model model){
         List<Autor> autorzy = autorDAO.getAll();
         model.addAttribute("autorzy",autorzy);
-        return "table/autorzy";
+        return "tables/autorzy";
     }
 }
