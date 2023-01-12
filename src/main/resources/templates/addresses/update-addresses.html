@@ -32,11 +32,13 @@
                 <td>Numer lokalu</td>
                 <td><input type="text" th:field="*{nr_lokalu}"></td>
             </tr>
-
-            <tr>
-                <td colspan="2"><button type="submit">Zaktualizuj</button> </td>
-            </tr>
         </table>
+        <br/>
+
+        <button class="btn btn-primary" type="submit">Zaktualizuj</button>
+        <button class="btn btn-primary" type="button" name="cancel" value="cancel" th:onclick="window.history.back()">
+            Anuluj
+        </button>
     </form>
 </div>
 

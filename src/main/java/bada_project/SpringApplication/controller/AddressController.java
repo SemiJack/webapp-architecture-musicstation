@@ -36,6 +36,13 @@ public class AddressController {
         return "addresses/show-addresses";
     }
 
+    @RequestMapping("/addresses/delete")
+    public String viewDeleteTableAddresses(Model model) {
+        List<Address> addresses = addressDAO.getAll();
+        model.addAttribute("addresses", addresses);
+        return "addresses/delete-addresses";
+    }
+
     @RequestMapping(value="/addresses/update/{id}")
     public ModelAndView updateAddress(@PathVariable(name = "id")int id) {
         ModelAndView mav = new ModelAndView("/addresses/update-addresses");
@@ -47,6 +54,6 @@ public class AddressController {
     @RequestMapping("/addresses/delete/{id}")
     public String deleteAddress(@PathVariable(name = "id")int id) {
         addressDAO.delete(id);
-        return "redirect:/addresses/show";
+        return "redirect:/addresses/delete";
     }
 }
