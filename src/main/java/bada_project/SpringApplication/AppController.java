@@ -1,18 +1,13 @@
 package bada_project.SpringApplication;
 
-import bada_project.SpringApplication.dao.AudycjaDAO;
-import bada_project.SpringApplication.model.Audycja;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Configuration
 public class AppController implements WebMvcConfigurer {
@@ -52,13 +47,5 @@ public class AppController implements WebMvcConfigurer {
     }
 
 
-    @Autowired
-    private AudycjaDAO audycjaDAO;
 
-    @GetMapping({"/audycje", "/table/audycje"})
-    public String viewTableAudycje(Model model){
-        List<Audycja> audycje = audycjaDAO.getAll();
-        model.addAttribute("audycje",audycje);
-        return "table/audycje";
-    }
 }

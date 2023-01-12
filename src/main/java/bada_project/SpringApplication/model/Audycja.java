@@ -1,5 +1,6 @@
 package bada_project.SpringApplication.model;
 
+
 import java.util.Date;
 
 public class Audycja {
