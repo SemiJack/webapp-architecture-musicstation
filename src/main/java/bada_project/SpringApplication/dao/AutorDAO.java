@@ -1,6 +1,5 @@
 package bada_project.SpringApplication.dao;
 
-import bada_project.SpringApplication.model.Audycja;
 import bada_project.SpringApplication.model.Autor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;

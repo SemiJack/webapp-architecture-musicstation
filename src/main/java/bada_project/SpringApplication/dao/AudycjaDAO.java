@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public class AudycjaDAO implements DAO<Audycja> {
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Autowired
     public AudycjaDAO(JdbcTemplate jdbcTemplate) {
         super();
         this.jdbcTemplate = jdbcTemplate;
@@ -36,7 +36,7 @@ public class AudycjaDAO implements DAO<Audycja> {
      */
     @Override
     public List<Audycja> getAll() {
-        String sql = "SELECT * FROM audycje";
+        String sql = "SELECT * FROM AUDYCJE";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Audycja.class));
     }
 

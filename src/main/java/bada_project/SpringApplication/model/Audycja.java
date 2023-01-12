@@ -6,14 +6,14 @@ public class Audycja {
     private int nr_audycji;
     private Date data;
     private String format;
-    private int czas_trwania;
+    private String czas_trwania;
     private int nr_rozglosni;
 
     public Audycja(){
 
     }
 
-    public Audycja(int nr_audycji, Date data, String format, int czas_trwania, int nr_rozglosni) {
+    public Audycja(int nr_audycji, Date data, String format, String czas_trwania, int nr_rozglosni) {
         this.nr_audycji = nr_audycji;
         this.data = data;
         this.format = format;
@@ -45,11 +45,11 @@ public class Audycja {
         this.format = format;
     }
 
-    public int getCzas_trwania() {
+    public String getCzas_trwania() {
         return czas_trwania;
     }
 
-    public void setCzas_trwania(int czas_trwania) {
+    public void setCzas_trwania(String czas_trwania) {
         this.czas_trwania = czas_trwania;
     }
 
