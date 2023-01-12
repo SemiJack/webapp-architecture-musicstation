@@ -30,7 +30,11 @@
                 <td th:text="${address.miasto}">Miasto</td>
                 <td th:text="${address.ulica}">Ulica</td>
                 <td th:text="${address.nr_lokalu}">Nr_Lokalu</td>
-                <td><a th:href="@{'/addresses/update/'+ ${address.nr_adresu}}">Edytuj</a> </td>
+                <td>
+                    <a th:href="@{'/addresses/update/'+ ${address.nr_adresu}}">Edytuj</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/addresses/delete/'+${address.nr_adresu}}">Usuń</a>
+                </td>
             </tr>
             </tbody>
         </table>

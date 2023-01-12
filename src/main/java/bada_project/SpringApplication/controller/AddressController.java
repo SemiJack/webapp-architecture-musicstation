@@ -44,8 +44,9 @@ public class AddressController {
         return mav;
     }
 
-    @RequestMapping("/addresses/delete")
-    public String deleteAddress(Model model) {
-        return "addresses/delete-addresses";
+    @RequestMapping("/addresses/delete/{id}")
+    public String deleteAddress(@PathVariable(name = "id")int id) {
+        addressDAO.delete(id);
+        return "redirect:/addresses/show";
     }
 }
