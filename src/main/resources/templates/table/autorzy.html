@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorzy Page</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Navigation -->
+<div th:replace="fragment/header :: header"></div>
+
+<div class="container">
+    <div align="center">
+        <h1>Records</h1>
+
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Format</th>
+                <th>Czas trwania</th>
+                <th>Nr rozglosni</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="audycja: ${audycje}">
+                <td th:text="${audycja.nr_audycji}">ID</td>
+                <td th:text="${audycja.data}">Data</td>
+                <td th:text="${audycja.format}">Format</td>
+                <td th:text="${audycja.czas_trwania}">Czas trwania</td>
+                <td th:text="${audycja.nr_rozglosni}">ID rozglosni</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
