@@ -36,6 +36,13 @@ public class AddressController {
         return "addresses/show-addresses";
     }
 
+    @RequestMapping("/addresses/prototype")
+    public String protytype(Model model) {
+        List<Address> addresses = addressDAO.getAll();
+        model.addAttribute("addresses", addresses);
+        return "addresses/prototype";
+    }
+
     @RequestMapping("/addresses/delete")
     public String viewDeleteTableAddresses(Model model) {
         List<Address> addresses = addressDAO.getAll();

@@ -46,8 +46,9 @@ public class AddressDAO implements DAO<Address> {
      */
     @Override
     public void saveOrUpdate(Address address) {
-        // update
+
         if(address.getNr_adresu()>0){
+            // update
             String sql = "UPDATE ADRESY SET miasto=?, ulica=?, nr_lokalu=? WHERE nr_adresu=?";
             jdbcTemplate.update(sql, address.getMiasto(), address.getUlica(), address.getNr_lokalu(), address.getNr_adresu());
         }else{

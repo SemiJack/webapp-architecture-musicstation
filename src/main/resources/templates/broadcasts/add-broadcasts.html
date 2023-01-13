@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="fragment/header :: header"></div>
+<div align="center">
+  <br/>
+
+  <form action="#" th:action="@{/broadcasts/add/save}" th:object="${broadcast}" method="post">
+    <table border="1" cellpadding="10">
+      <tr>
+        <td>Data</td>
+        <td><input type="text" th:field="*{data}"></td>
+      </tr>
+
+      <tr>
+        <td>Format</td>
+        <td><input type="text" th:field="*{format}"></td>
+      </tr>
+
+      <tr>
+        <td>Czas trwania</td>
+        <td><input type="text" th:field="*{czas_trwania}"></td>
+      </tr>
+
+      <tr>
+        <td>Numer rozgłośni</td>
+        <td><input type="text" th:field="*{nr_rozglosni}"></td>
+      </tr>
+
+    </table>
+    <br/>
+    <button class="btn btn-primary" type="submit">Dodaj</button>
+  </form>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

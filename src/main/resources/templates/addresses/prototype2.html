@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Two side select with jquery | JSON World</title>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+</head>
+<link href="roundslider.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<style>
+  .roundslider {
+    display: inline-block;
+  }
+</style>
+
+<body>
+<div class="row text-center">
+  <h1>Two side multi select with jquery</h1>
+  <div class="col-md-3 col-md-offset-2">
+    <select name="from[]" id="undo_redo" class="form-control" size="13" multiple="multiple">
+      <option value="1">C++</option>
+      <option value="2">C#</option>
+      <option value="3">Haskell</option>
+      <option value="4">Java</option>
+      <option value="5">JavaScript</option>
+      <option value="6">Lisp</option>
+      <option value="7">Lua</option>
+      <option value="8">MATLAB</option>
+      <option value="9">NewLISP</option>
+      <option value="10">PHP</option>
+      <option value="11">Perl</option>
+      <option value="12">SQL</option>
+      <option value="13">Unix shell</option>
+    </select>
+  </div>
+
+  <div class="col-md-2">
+    <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block">undo</button>
+    <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+    <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+    <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+    <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+    <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
+  </div>
+
+  <div class="col-md-3">
+    <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script th:src="@{/js/multiselect.js}"></script>
+<script>
+  $(function() {
+    $('#undo_redo').multiselect();
+  });
+</script>
+
+</body>
+</html>

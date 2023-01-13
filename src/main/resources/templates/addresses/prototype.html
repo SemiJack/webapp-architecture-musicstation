@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+
+<div class="row text-center">
+    <div class="col-md-3 col-md-offset-2">
+        <select name="from[]" id="undo_redo" class="form-control" multiple="multiple">
+            <option th:each="address: ${addresses}" th:value="${address.nr_adresu}" th:text="${address.miasto}">Miasto
+            </option>
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block">undo</button>
+        <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i
+                class="fas fa-forward"></i></button>
+        <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i
+                class="fas fa-arrow-right"></i></button>
+        <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i
+                class="fas fa-arrow-left"></i></button>
+        <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i
+                class="fas fa-backward"></i></button>
+        <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
+    </div>
+    <div class="col-md-3">
+        <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
+    </div>
+</div>
+
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+
+<!-- Scripts -->
+<script th:src="@{/js/multiselect.js}"></script>
+<script>
+    $(function () {
+        $('#undo_redo').multiselect();
+    });
+</script>
+</body>
+</html>
