@@ -5,7 +5,7 @@ import java.util.Date;
 public class Track {
     private int nr_nagrania;
     private String album;
-    private boolean licencja;
+    private String licencja;
     private Date waznosc_licencji;
 
     public Track(){
@@ -35,11 +35,11 @@ public class Track {
         this.album = album;
     }
 
-    public boolean isLicencja() {
+    public String getLicencja() {
         return licencja;
     }
 
-    public void setLicencja(boolean licencja) {
+    public void setLicencja(String licencja) {
         this.licencja = licencja;
     }
 
