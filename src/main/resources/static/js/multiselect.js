@@ -249,3 +249,10 @@ if ("undefined" == typeof jQuery) throw new Error("multiselect requires jQuery")
             return t(e).text().match(i)
         }
     });
+function selectAll(){
+    const name = [];
+    for(var i = 0; i < document.getElementById("undo_redo_to").options.length; i++){
+        name.push(document.getElementById("undo_redo_to").options[i]);
+    }
+    return name;
+}

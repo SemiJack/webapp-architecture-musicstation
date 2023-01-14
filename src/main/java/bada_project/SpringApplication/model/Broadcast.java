@@ -3,18 +3,18 @@ package bada_project.SpringApplication.model;
 
 import java.util.Date;
 
-public class Audycja {
+public class Broadcast {
     private int nr_audycji;
     private Date data;
     private String format;
     private String czas_trwania;
     private int nr_rozglosni;
 
-    public Audycja(){
+    public Broadcast(){
 
     }
 
-    public Audycja(int nr_audycji, Date data, String format, String czas_trwania, int nr_rozglosni) {
+    public Broadcast(int nr_audycji, Date data, String format, String czas_trwania, int nr_rozglosni) {
         this.nr_audycji = nr_audycji;
         this.data = data;
         this.format = format;

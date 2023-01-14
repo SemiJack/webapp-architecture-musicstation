@@ -2,17 +2,17 @@ package bada_project.SpringApplication.model;
 
 import java.util.Date;
 
-public class Utwor {
+public class Track {
     private int nr_nagrania;
     private String album;
-    private boolean licencja;
+    private String licencja;
     private Date waznosc_licencji;
 
-    public Utwor(){
+    public Track(){
 
     }
 
-    public Utwor(int nr_nagrania, String album, boolean licencja, Date waznosc_licencji) {
+    public Track(int nr_nagrania, String album, String licencja, Date waznosc_licencji) {
         this.nr_nagrania = nr_nagrania;
         this.album = album;
         this.licencja = licencja;
@@ -35,11 +35,11 @@ public class Utwor {
         this.album = album;
     }
 
-    public boolean isLicencja() {
+    public String getLicencja() {
         return licencja;
     }
 
-    public void setLicencja(boolean licencja) {
+    public void setLicencja(String licencja) {
         this.licencja = licencja;
     }
 
