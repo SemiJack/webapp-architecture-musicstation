@@ -1,17 +1,11 @@
 package bada_project.SpringApplication;
 
 import bada_project.SpringApplication.dao.AddressDAO;
-import bada_project.SpringApplication.dao.AudycjaDAO;
 import bada_project.SpringApplication.model.Address;
-import bada_project.SpringApplication.model.Audycja;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * ATTENTION!! Tricky it is ;) Before testing insert proper values according to actual database state.

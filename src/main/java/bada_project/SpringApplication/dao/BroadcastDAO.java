@@ -1,6 +1,6 @@
 package bada_project.SpringApplication.dao;
 
-import bada_project.SpringApplication.model.Audycja;
+import bada_project.SpringApplication.model.Broadcast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,11 +10,11 @@ import java.util.List;
 
 
 @Repository
-public class AudycjaDAO implements DAO<Audycja> {
+public class BroadcastDAO implements DAO<Broadcast> {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public AudycjaDAO(JdbcTemplate jdbcTemplate) {
+    public BroadcastDAO(JdbcTemplate jdbcTemplate) {
         super();
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -25,9 +25,9 @@ public class AudycjaDAO implements DAO<Audycja> {
      * @return Audycja object
      */
     @Override
-    public Audycja get(int id) {
+    public Broadcast get(int id) {
         String sql = "SELECT * FROM audycje WHERE nr_audycji=" + id;
-        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Audycja.class));
+        return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Broadcast.class));
     }
 
     /**
@@ -35,9 +35,9 @@ public class AudycjaDAO implements DAO<Audycja> {
      * @return list of all records
      */
     @Override
-    public List<Audycja> getAll() {
+    public List<Broadcast> getAll() {
         String sql = "SELECT * FROM AUDYCJE";
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Audycja.class));
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Broadcast.class));
     }
 
     /**
@@ -45,7 +45,7 @@ public class AudycjaDAO implements DAO<Audycja> {
      * @param audycja
      */
     @Override
-    public void saveOrUpdate(Audycja audycja) {
+    public void saveOrUpdate(Broadcast audycja) {
         // update
         if(audycja.getNr_audycji()>0){
             String sql = "UPDATE AUDYCJE SET DATA=?, FORMAT=?, CZAS_TRWANIA=?, NR_ROZGLOSNI=? WHERE NR_AUDYCJI=?";

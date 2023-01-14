@@ -2,7 +2,7 @@ package bada_project.SpringApplication.model;
 
 import java.util.Date;
 
-public class Pracownik {
+public class Employee {
     private int nr_pracownika;
     private String imie;
     private String nazwisko;
@@ -17,11 +17,11 @@ public class Pracownik {
     private int nr_adresu;
     private int nr_stanowiska;
 
-    public Pracownik(){
+    public Employee(){
 
     }
 
-    public Pracownik(int nr_pracownika, String imie, String nazwisko, Date data_urodzenia, String pesel, String plec, Date data_zatrudnienia, String nr_konta, String email, String nr_telefonu, int nr_rozglosni, int nr_adresu, int nr_stanowiska) {
+    public Employee(int nr_pracownika, String imie, String nazwisko, Date data_urodzenia, String pesel, String plec, Date data_zatrudnienia, String nr_konta, String email, String nr_telefonu, int nr_rozglosni, int nr_adresu, int nr_stanowiska) {
         this.nr_pracownika = nr_pracownika;
         this.imie = imie;
         this.nazwisko = nazwisko;
