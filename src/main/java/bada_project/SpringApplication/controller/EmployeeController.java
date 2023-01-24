@@ -1,6 +1,7 @@
 package bada_project.SpringApplication.controller;
 
 import bada_project.SpringApplication.dao.EmployeeDAO;
+import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,6 +51,14 @@ public class EmployeeController {
         return "employees/delete-employees";
     }
 
+   /* @RequestMapping(value="/employees/show/{id}")
+    public ModelAndView viewEmployee(@PathVariable(name = "id")int id) {
+        ModelAndView mav = new ModelAndView("/employees/show-employees");
+        Employee employee = employeeDAO.get(id);
+        mav.addObject("employee", employee);
+        return mav;
+    }*/
+
     @RequestMapping(value="/employees/update/{id}")
     public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
         ModelAndView mav = new ModelAndView("/employees/update-employees");
@@ -58,7 +67,7 @@ public class EmployeeController {
         return mav;
     }
 
-    @RequestMapping("/addresses/delete/{id}")
+    @RequestMapping("/employees/delete/{id}")
     public String deleteEmployee(@PathVariable(name = "id")int id) {
         employeeDAO.delete(id);
         return "redirect:/employees/delete";

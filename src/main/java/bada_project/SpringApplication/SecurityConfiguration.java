@@ -23,9 +23,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .password("admin")
             .roles("ADMIN")
             .and()
-            .withUser("technik")
-            .password("technik")
-            .roles("USER", "TECH");
+            .withUser("KonradTworek")
+            .password("kondzio")
+            .roles("USER");
 }
 
 @Bean

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+<div align="center">
+  <h1> Edytuj</h1>
+  <br/>
+  <form action="#" th:action="@{/employees/update/save}" th:object="${employees}" method="post">
+    <table border="1" cellpadding="10">
+      <!--<tr>
+        <td>ID</td>
+        <td><input type="text" th:field="*{nr_pracownika}" readonly="readonly"></td>
+      </tr>-->
+      <tr>
+        <td>Imię</td>
+        <td><input type="text" th:field="*{imie}"></td>
+      </tr>
+
+      <tr>
+        <td>Nazwisko</td>
+        <td><input type="text" th:field="*{nazwisko}"></td>
+      </tr>
+
+      <tr>
+        <td>Data urodzenia</td>
+        <td><input type="text" th:field="*{data_urodzenia}"></td>
+      </tr>
+
+      <tr>
+        <td>Pesel</td>
+        <td><input type="text" th:field="*{pesel}"></td>
+      </tr>
+    </table>
+    <br/>
+
+    <button class="btn btn-primary" type="submit">Zaktualizuj</button>
+    <button class="btn btn-primary" type="button" name="cancel" value="cancel" th:onclick="window.history.back()">
+      Anuluj
+    </button>
+  </form>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>
