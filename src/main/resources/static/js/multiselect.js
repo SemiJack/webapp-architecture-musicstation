@@ -254,5 +254,6 @@ function selectAll(){
     for(var i = 0; i < document.getElementById("undo_redo_to").options.length; i++){
         name.push(document.getElementById("undo_redo_to").options[i]);
     }
+    document.getElementById("send").appendChild(name)
     return name;
 }

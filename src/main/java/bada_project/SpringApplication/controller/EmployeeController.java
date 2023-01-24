@@ -1,0 +1,67 @@
+package bada_project.SpringApplication.controller;
+
+import bada_project.SpringApplication.dao.EmployeeDAO;
+import bada_project.SpringApplication.model.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
+@Controller
+public class EmployeeController {
+    @Autowired
+    private EmployeeDAO employeeDAO;
+
+    @RequestMapping(value = {"/employees/add/save","/employees/update/save"},method = RequestMethod.POST)
+    public String save(@ModelAttribute("employee") Employee employee) {
+        employeeDAO.saveOrUpdate(employee);
+        return "redirect:/employees/show";
+    }
+
+    @RequestMapping("/employees/add")
+    public String addEmployee(Model model){
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "employees/add-employees";
+    }
+
+
+    @RequestMapping("/employees/show")
+    public String viewTableEmployees(Model model) {
+        List<Employee> employees = employeeDAO.getAll();
+        model.addAttribute("employees", employees);
+        return "employees/show-employees";
+    }
+
+    @RequestMapping("/employees/prototype")
+    public String protytype(Model model) {
+        List<Employee> employees = employeeDAO.getAll();
+        model.addAttribute("employees", employees);
+        return "employees/prototype";
+    }
+
+    @RequestMapping("/employees/delete")
+    public String viewDeleteTableEmployees(Model model) {
+        List<Employee> employees = employeeDAO.getAll();
+        model.addAttribute("employees", employees);
+        return "employees/delete-employees";
+    }
+
+    @RequestMapping(value="/employees/update/{id}")
+    public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
+        ModelAndView mav = new ModelAndView("/employees/update-employees");
+        Employee employee = employeeDAO.get(id);
+        mav.addObject("employees",employee);
+        return mav;
+    }
+
+    @RequestMapping("/addresses/delete/{id}")
+    public String deleteEmployee(@PathVariable(name = "id")int id) {
+        employeeDAO.delete(id);
+        return "redirect:/employees/delete";
+    }
+}
+

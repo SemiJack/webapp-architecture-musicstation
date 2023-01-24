@@ -3,7 +3,6 @@ package bada_project.SpringApplication.controller;
 import bada_project.SpringApplication.dao.BroadcastDAO;
 import bada_project.SpringApplication.dao.RecordingDAO;
 import bada_project.SpringApplication.dao.TrackDAO;
-import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Broadcast;
 import bada_project.SpringApplication.model.Recording;
 import bada_project.SpringApplication.model.Track;
@@ -46,13 +45,27 @@ public class BroadcastController {
     }
 
     @RequestMapping("/broadcasts/edit/tracks")
-    public String addTracksToBroadcast(Model model) {
+    public String showTracksToBroadcast(Model model) {
         List<Recording> recordings = recordingDAO.getAll();
         model.addAttribute("recordings", recordings);
         List<Track> tracks = trackDAO.getAll();
         model.addAttribute("tracks", tracks);
         return "broadcasts/edit/tracks";
     }
+
+    @RequestMapping("/broadcasts/edit/tracks/{tracks}")
+    public String addTracksToBroadcast(@PathVariable(name = "tracks") String tracks, Model model) {
+
+        //model.getAttribute("")
+        //String[] substring = tracks.split("");
+        //for(String i : substring){
+        //
+       // }
+        //ddress address = addressDAO.get(id);
+        //mav.addObject("address",address);
+        return "broadcasts/edit/tracks";
+    }
+
 
     @RequestMapping("/broadcasts/delete")
     public String viewDeleteTableBroadcasts(Model model) {

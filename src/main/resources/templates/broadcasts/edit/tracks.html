@@ -34,7 +34,10 @@
         <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i
                 class="fas fa-backward"></i></button>
         <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
-        <button type="button" onclick=""></button>
+        <form action="/broadcasts/edit/tracks" id="send">
+            <input type="submit" th:onclick="selectAll()">
+        </form>
+        <!--<button type="submit" th:action="" th:onclick="selectAll()">OK</button> -->
     </div>
     <div class="col-md-3">
         <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>

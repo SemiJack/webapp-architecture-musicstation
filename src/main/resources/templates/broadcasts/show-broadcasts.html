@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Widok - Audycje</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <style>
+        tr#content:hover {background-color: lightgray}
+    </style>
 </head>
 <body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
 
+<div class="container">
+    <div align="center">
+        <br/>
+        <h1>Tabela Audycji</h1>
+        Aby edytować kliknij w rekord.
+        <br/>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Data</th>
+                <th>Format</th>
+                <th>Czas_trwania</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:title="Edytuj" id="content" th:each="broadcasts: ${broadcasts}" th:onclick="'javascript:rowClicked(\'' + ${broadcasts.nr_audycji} + '\');'">
+                <td th:text="${broadcasts.nr_audycji}">ID</td>
+                <td th:text="${broadcasts.data}">Data</td>
+                <td th:text="${broadcasts.format}">Format</td>
+                <td th:text="${broadcasts.czas_trwania}">Czas trwania</td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <a class="btn btn-primary" href="/addresses/delete" role="button" >Tryb usuwania</a>
+    </div>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+<script th:src="@{/js/script.js}"></script>
+<script>
+    function rowClicked(value){
+        location.href="/addresses/update/"+value;
+    }
+</script>
 </body>
 </html>
