@@ -1,5 +1,6 @@
 package bada_project.SpringApplication.controller;
 
+import bada_project.SpringApplication.Options;
 import bada_project.SpringApplication.dao.BroadcastDAO;
 import bada_project.SpringApplication.dao.RecordingDAO;
 import bada_project.SpringApplication.dao.TrackDAO;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,7 +25,7 @@ public class BroadcastController {
     @Autowired
     private RecordingDAO recordingDAO;
 
-    @RequestMapping(value = {"/broadcasts/add/save","/broadcasts/update/save"},method = RequestMethod.POST)
+    @RequestMapping(value = {"/broadcasts/add/save","/broadcasts/details/save"},method = RequestMethod.POST)
     public String save(@ModelAttribute("broadcast") Broadcast broadcast) {
         broadcastDAO.saveOrUpdate(broadcast);
         return "redirect:/broadcasts/show";
@@ -44,25 +46,24 @@ public class BroadcastController {
         return "broadcasts/show-broadcasts";
     }
 
-    @RequestMapping("/broadcasts/edit/tracks")
-    public String showTracksToBroadcast(Model model) {
-        List<Recording> recordings = recordingDAO.getAll();
-        model.addAttribute("recordings", recordings);
+    @RequestMapping("/broadcasts/details/{id}/tracks")
+    public String showTracksToAdd(Model model, @PathVariable(name = "id") int id) {
         List<Track> tracks = trackDAO.getAll();
         model.addAttribute("tracks", tracks);
+        List<Track> addedTracks = trackDAO.getTracksAddedToBroadcast(id);
+        model.addAttribute("addedTracks", addedTracks);
+        return "/broadcasts/edit/tracks";
+    }
+
+    @RequestMapping("/broadcasts/details/{id}/tracks/add/{id2}")
+    public String addTrackToBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
+        recordingDAO.bindWithBroadcast(id_recording, id_broadcast);
         return "broadcasts/edit/tracks";
     }
 
-    @RequestMapping("/broadcasts/edit/tracks/{tracks}")
-    public String addTracksToBroadcast(@PathVariable(name = "tracks") String tracks, Model model) {
-
-        //model.getAttribute("")
-        //String[] substring = tracks.split("");
-        //for(String i : substring){
-        //
-       // }
-        //ddress address = addressDAO.get(id);
-        //mav.addObject("address",address);
+    @RequestMapping("/broadcasts/details/{id}/tracks/delete/{id2}")
+    public String deleteTrackFromBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
+        recordingDAO.unbindWithBroadcast(id_recording, id_broadcast);
         return "broadcasts/edit/tracks";
     }
 
@@ -74,11 +75,16 @@ public class BroadcastController {
         return "broadcasts/delete-broadcasts";
     }
 
-    @RequestMapping(value="/broadcasts/update/{id}")
+    @RequestMapping(value="/broadcasts/details/{id}")
     public ModelAndView updateBroadcast(@PathVariable(name = "id")int id) {
-        ModelAndView mav = new ModelAndView("/broadcasts/update-broadcast");
+        ModelAndView mav = new ModelAndView("/broadcasts/details-broadcast");
         Broadcast broadcast = broadcastDAO.get(id);
         mav.addObject("broadcast",broadcast);
+        List<Recording> recordings = recordingDAO.getAll();
+        mav.addObject("recordings", recordings);
+        List<Track> tracks = trackDAO.getAll();
+        mav.addObject("tracks", tracks);
+        mav.addObject("options", new Options());
         return mav;
     }
 

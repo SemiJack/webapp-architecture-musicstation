@@ -68,6 +68,15 @@ public class RecordingDAO implements DAO<Recording>{
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Recording.class));
     }
 
+    public void bindWithBroadcast(int id_recording, int id_broadcast){
+        String sql = "INSERT INTO Nagranie_Audycja NR_NAGRANIA=?, NR_AUDYCJI=?";
+        jdbcTemplate.update(sql, id_recording, id_broadcast);
+    }
+    public void unbindWithBroadcast(int id_recording, int id_broadcast){
+        String sql = "DELETE FROM Nagranie_Audycja WHERE NR_NAGRANIA=? AND NR_AUDYCJI=?";
+        jdbcTemplate.update(sql, id_recording, id_broadcast);
+    }
+
     /**
      * Delete from database
      * @param nr_nagrania

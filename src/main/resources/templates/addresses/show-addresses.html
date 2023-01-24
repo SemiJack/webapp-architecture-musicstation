@@ -46,5 +46,10 @@
 <!-- Footer -->
 <div th:replace="fragment/footer :: footer"></div>
 <script th:src="@{/js/script.js}"></script>
+<script>
+    function rowClicked(value){
+        location.href="/addresses/update/"+value;
+    }
+</script>
 </body>
 </html>

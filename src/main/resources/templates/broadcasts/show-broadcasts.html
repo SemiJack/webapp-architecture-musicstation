@@ -31,7 +31,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:title="Edytuj" id="content" th:each="broadcasts: ${broadcasts}" th:onclick="'javascript:rowClicked(\'' + ${broadcasts.nr_audycji} + '\');'">
+            <tr th:title="Edytuj" id="content" th:each="broadcasts: ${broadcasts}" th:onclick="'javascript:clickRowToEdit(\'' + ${broadcasts.nr_audycji} + '\');'">
                 <td th:text="${broadcasts.nr_audycji}">ID</td>
                 <td th:text="${broadcasts.data}">Data</td>
                 <td th:text="${broadcasts.format}">Format</td>
@@ -40,15 +40,15 @@
             </tbody>
         </table>
         <br/>
-        <a class="btn btn-primary" href="/addresses/delete" role="button" >Tryb usuwania</a>
+        <a class="btn btn-primary" href="/broadcasts/delete" role="button" >Tryb usuwania</a>
     </div>
 </div>
 <!-- Footer -->
 <div th:replace="fragment/footer :: footer"></div>
 <script th:src="@{/js/script.js}"></script>
 <script>
-    function rowClicked(value){
-        location.href="/addresses/update/"+value;
+    function clickRowToEdit(value){
+        location.href="/broadcasts/details/"+value;
     }
 </script>
 </body>

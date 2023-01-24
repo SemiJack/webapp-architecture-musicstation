@@ -36,9 +36,15 @@ public class TrackDAO implements DAO<Track> {
      */
     @Override
     public List<Track> getAll() {
-        String sql = "SELECT * FROM UTWORY";
+        String sql = "SELECT * FROM UTWORY LEFT JOIN NAGRANIA ON NAGRANIA.nr_nagrania=UTWORY.nr_nagrania";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Track.class));
     }
+
+    public List<Track> getTracksAddedToBroadcast(int nr_audycji) {
+        String sql = "SELECT UTWORY.* FROM UTWORY LEFT JOIN NAGRANIA ON NAGRANIA.nr_nagrania = UTWORY.nr_nagrania WHERE UTWORY.NR_NAGRANIA IN (SELECT NAGRANIE_AUDYCJA.NR_NAGRANIA FROM NAGRANIE_AUDYCJA WHERE NR_AUDYCJI=?)";
+        return jdbcTemplate.query(sql,BeanPropertyRowMapper.newInstance(Track.class),nr_audycji);
+    }
+
 
     /**
      * Add new or update record to table. Auto set unique key value.
