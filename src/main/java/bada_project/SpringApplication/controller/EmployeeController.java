@@ -4,6 +4,7 @@ import bada_project.SpringApplication.dao.EmployeeDAO;
 import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,13 +52,14 @@ public class EmployeeController {
         return "employees/delete-employees";
     }
 
-   /* @RequestMapping(value="/employees/show/{id}")
-    public ModelAndView viewEmployee(@PathVariable(name = "id")int id) {
-        ModelAndView mav = new ModelAndView("/employees/show-employees");
-        Employee employee = employeeDAO.get(id);
-        mav.addObject("employee", employee);
+    @RequestMapping(value="/employees/show/{user}")
+    public ModelAndView viewEmployee(@PathVariable(name = "user")String user) {
+        ModelAndView mav = new ModelAndView("/employees/show-employee");
+        List<Employee> employee = new ArrayList<>();
+        employee.add(employeeDAO.getByName(user));
+        mav.addObject("employees", employee);
         return mav;
-    }*/
+    }
 
     @RequestMapping(value="/employees/update/{id}")
     public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {

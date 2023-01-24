@@ -59,8 +59,7 @@
                 </button>
             </form>
             <br/>
-            <a class="btn btn-primary" href="/employees/show/" role="button">Pracownicy</a>
-
+            <a class="btn btn-primary" href="/employees/show/employee/" role="button">Pracownik</a>
         </div>
 
     </div>
@@ -71,10 +70,5 @@
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 <script th:src="@{/js/script.js}"></script>
-<script>
-    function rowClicked(value){
-        return "/employees/show/"+value;
-    }
-</script>
 </body>
 </html>
