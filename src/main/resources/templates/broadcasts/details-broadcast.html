@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Audycje - Szczegóły</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("https://static.vecteezy.com/system/resources/previews/008/129/918/original/abstract-background-line-wave-element-sound-spectrum-equalizer-wallpaper-futuristic-particle-technology-illustration-vector.jpg");
+        }
+    </style>
 </head>
 <body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+
+
+<div align="center">
+    <h1> Szczegóły Audycji</h1>
+    <br/>
+    <form action="#" th:action="@{/broadcasts/details/save}" th:object="${broadcast}" method="post">
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>ID</td>
+                <td><input type="text" th:field="*{nr_audycji}" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>Data</td>
+                <td><input type="text" th:field="*{data}"></td>
+            </tr>
+
+            <tr>
+                <td>Format</td>
+                <td><input type="text" th:field="*{format}"></td>
+            </tr>
+
+            <tr>
+                <td>Czas trwania</td>
+                <td><input type="text" th:field="*{czas_trwania}"></td>
+            </tr>
+        </table>
+        <br/>
+
+        <button class="btn btn-primary" type="submit">Zaktualizuj</button>
+        <button class="btn btn-primary" type="button" name="cancel" value="cancel" th:onclick="window.history.back()">Anuluj</button>
+
+    </form>
+
+</div>
+
+
+
+
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+<script th:src="@{/js/multiselect.js}"></script>
 
 </body>
 </html>

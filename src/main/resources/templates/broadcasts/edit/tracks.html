@@ -1,58 +1,89 @@
 <!DOCTYPE html>
-<html lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>Title</title>
+    <title>Widok - Audycja - Utwory</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
+    <style>
+        .child{
+            display: inline-block;
+        }
+    </style>
 
 </head>
 <body>
 <!-- Header -->
 <div th:replace="fragment/header :: header"></div>
 
-<div class="row text-center">
-    <div class="col-md-3 col-md-offset-2">
-        <select name="from[]" id="undo_redo" class="form-control" multiple="multiple">
-            <option th:each="recording: ${recordings}" th:value="${recording.nr_nagrania}" th:text="${recording.tytul+' '+recording.czas_trwania}">Miasto
-            </option>
-        </select>
-    </div>
 
-    <div class="col-md-2">
-        <button type="button" id="undo_redo_undo" class="btn btn-primary btn-block">undo</button>
-        <button type="button" id="undo_redo_rightAll" class="btn btn-default btn-block"><i
-                class="fas fa-forward"></i></button>
-        <button type="button" id="undo_redo_rightSelected" class="btn btn-default btn-block"><i
-                class="fas fa-arrow-right"></i></button>
-        <button type="button" id="undo_redo_leftSelected" class="btn btn-default btn-block"><i
-                class="fas fa-arrow-left"></i></button>
-        <button type="button" id="undo_redo_leftAll" class="btn btn-default btn-block"><i
-                class="fas fa-backward"></i></button>
-        <button type="button" id="undo_redo_redo" class="btn btn-warning btn-block">redo</button>
-        <form action="/broadcasts/edit/tracks" id="send">
-            <input type="submit" th:onclick="selectAll()">
-        </form>
-        <!--<button type="submit" th:action="" th:onclick="selectAll()">OK</button> -->
+<div class="container">
+    <div class="child" align="center">
+        <h1>Records</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Album</th>
+                <th>Licencja</th>
+                <th>Ważność Licencji</th>
+                <th>Czas trwania</th>
+                <th>Tytuł</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tracks: ${tracks}">
+                <td th:text="${tracks.nr_nagrania}">ID</td>
+                <td th:text="${tracks.album}">Album</td>
+                <td th:text="${tracks.licencja}">Licencja</td>
+                <td th:text="${tracks.waznosc_licencji}">Ważność Licencji</td>
+                <td th:text="${tracks.czas_trwania}">Czas trwania</td>
+                <td th:text="${tracks.tytul}">Tytuł</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/add/__${tracks.nr_nagrania}__}">Dodaj</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <a class="btn btn-primary" href="/broadcasts/show" role="button" >Wróć</a>
     </div>
-    <div class="col-md-3">
-        <select name="to[]" id="undo_redo_to" class="form-control" size="13" multiple="multiple"></select>
+    <div class="child">
+        <h1>Dodane Utwory</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Album</th>
+                <th>Licencja</th>
+                <th>Ważność Licencji</th>
+                <th>Czas trwania</th>
+                <th>Tytuł</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="addedTracks: ${addedTracks}">
+                <td th:text="${addedTracks.nr_nagrania}">ID</td>
+                <td th:text="${addedTracks.album}">Album</td>
+                <td th:text="${addedTracks.licencja}">Licencja</td>
+                <td th:text="${addedTracks.waznosc_licencji}">Ważność Licencji</td>
+                <td th:text="${addedTracks.czas_trwania}">Czas trwania</td>
+                <td th:text="${addedTracks.tytul}">Tytuł</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/delete/__${addedTracks.nr_nagrania}__}">Usuń</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
-
 <!-- Footer -->
 <div th:replace="fragment/footer :: footer"></div>
-
-<!-- Scripts -->
-<script th:src="@{/js/multiselect.js}"></script>
-<script>
-    $(function () {
-        $('#undo_redo').multiselect();
-    });
-</script>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

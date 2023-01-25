@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Widok - Pracownik</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <style>
+    tr#content:hover {background-color: lightgray}
+  </style>
+  <style>
+    body {
+      background-image: url("https://static.vecteezy.com/system/resources/previews/008/129/918/original/abstract-background-line-wave-element-sound-spectrum-equalizer-wallpaper-futuristic-particle-technology-illustration-vector.jpg");
+    }
+  </style>
+</head>
+<body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+
+<div class="container">
+  <div align="center">
+    <br/>
+    <h1>Tabela Pracowników</h1>
+    Aby edytować kliknij w rekord.
+    <br/>
+
+    <br/>
+    <table border="1" cellpadding="10" align="center">
+      <thead>
+      <tr>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Data urodzenia</th>
+        <th>Pesel</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:title="Edytuj" id="content" th:each="employee: ${employees}" th:onclick="'javascript:rowClicked(\'' + ${employee.nr_pracownika} + '\');'">
+        <td th:text="${employee.imie}">Imię</td>
+        <td th:text="${employee.nazwisko}">Nazwisko</td>
+        <td th:text="${#dates.format(employee.data_urodzenia, 'dd-MM-yyyy')}">Data urodzenia</td>
+        <td th:text="${employee.pesel}">Pesel</td>
+      </tr>
+      </tbody>
+    </table>
+    <br/>
+<!--    <a class="btn btn-primary" href="/employees/delete" role="button" >Tryb usuwania</a>-->
+  </div>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+<script th:src="@{/js/script.js}"></script>
+<script>
+  function rowClicked(value){
+    location.href="/employees/update/"+value;
+  }
+</script>
+</body>
+</html>
