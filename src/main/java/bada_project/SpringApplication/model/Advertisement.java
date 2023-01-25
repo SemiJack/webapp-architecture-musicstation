@@ -2,7 +2,7 @@ package bada_project.SpringApplication.model;
 
 import java.util.Date;
 
-public class Reklama {
+public class Advertisement {
     private int nr_nagrania;
     private String transkrypt;
     private Date data_od;
@@ -11,11 +11,11 @@ public class Reklama {
     private int odtworzenia;
     private int nr_reklamodawcy;
 
-    public Reklama(){
+    public Advertisement(){
 
     }
 
-    public Reklama(int nr_nagrania, String transkrypt, Date data_od, Date data_do, double cena, int odtworzenia, int nr_reklamodawcy) {
+    public Advertisement(int nr_nagrania, String transkrypt, Date data_od, Date data_do, double cena, int odtworzenia, int nr_reklamodawcy) {
         this.nr_nagrania = nr_nagrania;
         this.transkrypt = transkrypt;
         this.data_od = data_od;
@@ -83,7 +83,7 @@ public class Reklama {
 
     @Override
     public String toString() {
-        return "Reklama{" +
+        return "Advertisement{" +
                 "nr_nagrania=" + nr_nagrania +
                 ", transkrypt='" + transkrypt + '\'' +
                 ", data_od=" + data_od +

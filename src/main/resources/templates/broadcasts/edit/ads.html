@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Widok - Audycja - Reklamy</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+    <style>
+        .child{
+            display: inline-block;
+        }
+    </style>
+
 </head>
 <body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
 
+
+<div class="container">
+    <div class="child" align="center">
+        <h1>Records</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th> <!-- TODO -->
+                <th>Album</th>
+                <th>Licencja</th>
+                <th>Ważność Licencji</th>
+                <th>Czas trwania</th>
+                <th>Tytuł</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tracks: ${tracks}">
+                <td th:text="${tracks.nr_nagrania}">ID</td>
+                <td th:text="${tracks.album}">Album</td>
+                <td th:text="${tracks.licencja}">Licencja</td>
+                <td th:text="${tracks.waznosc_licencji}">Ważność Licencji</td>
+                <td th:text="${tracks.czas_trwania}">Czas trwania</td>
+                <td th:text="${tracks.tytul}">Tytuł</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/add/__${tracks.nr_nagrania}__}">Dodaj</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <a class="btn btn-primary" th:href="@{/broadcasts/details/__${id_broadcast}__}" role="button" >Wróć</a>
+    </div>
+    <div class="child">
+        <h1>Dodane Utwory</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Album</th>
+                <th>Licencja</th>
+                <th>Ważność Licencji</th>
+                <th>Czas trwania</th>
+                <th>Tytuł</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="addedTracks: ${addedTracks}">
+                <td th:text="${addedTracks.nr_nagrania}">ID</td>
+                <td th:text="${addedTracks.album}">Album</td>
+                <td th:text="${addedTracks.licencja}">Licencja</td>
+                <td th:text="${addedTracks.waznosc_licencji}">Ważność Licencji</td>
+                <td th:text="${addedTracks.czas_trwania}">Czas trwania</td>
+                <td th:text="${addedTracks.tytul}">Tytuł</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/delete/__${addedTracks.nr_nagrania}__}">Usuń</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>
