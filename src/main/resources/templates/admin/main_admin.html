@@ -2,12 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Main Admin Page</title>
+    <title>Administracja</title>
 
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <style>
         body {
             background-image: url("https://static.vecteezy.com/system/resources/previews/008/129/918/original/abstract-background-line-wave-element-sound-spectrum-equalizer-wallpaper-futuristic-particle-technology-illustration-vector.jpg");
+        }
+        .buttons button{
+            width: 100%;
         }
     </style>
 </head>
@@ -31,8 +34,8 @@
                 </button>
             </form>
             <br/>
-            <a class="btn btn-primary" href="/addresses/show" role="button" >Adresy</a><br/>
-            <a class="btn btn-primary" href="/broadcasts/show" role="button" >Audycje</a><br/>
+            <a class="btn btn-primary" href="/addresses/show" role="button" >Adresy</a><br/><br/>
+            <a class="btn btn-primary" href="/broadcasts/show" role="button" >Audycje</a><br/><br/>
             <a class="btn btn-primary" href="/employees/show/" role="button">Pracownicy</a>
         </div>
     </div>
