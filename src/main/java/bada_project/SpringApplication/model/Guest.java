@@ -1,6 +1,6 @@
 package bada_project.SpringApplication.model;
 
-public class Gosc {
+public class Guest {
     private int nr_goscia;
     private String imie;
     private String nazwisko;
@@ -9,11 +9,11 @@ public class Gosc {
     private int nr_telefonu;
     private int nr_rozglosni;
 
-    public Gosc(){
+    public Guest(){
 
     }
 
-    public Gosc(int nr_goscia, String imie, String nazwisko, String pseudonim, String email, int nr_telefonu, int nr_rozglosni) {
+    public Guest(int nr_goscia, String imie, String nazwisko, String pseudonim, String email, int nr_telefonu, int nr_rozglosni) {
         this.nr_goscia = nr_goscia;
         this.imie = imie;
         this.nazwisko = nazwisko;
@@ -81,7 +81,7 @@ public class Gosc {
 
     @Override
     public String toString() {
-        return "Gosc{" +
+        return "Guest{" +
                 "nr_goscia=" + nr_goscia +
                 ", imie='" + imie + '\'' +
                 ", nazwisko='" + nazwisko + '\'' +

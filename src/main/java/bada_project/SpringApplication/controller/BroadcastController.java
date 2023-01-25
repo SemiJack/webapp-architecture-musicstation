@@ -1,20 +1,23 @@
 package bada_project.SpringApplication.controller;
 
-import bada_project.SpringApplication.Options;
 import bada_project.SpringApplication.dao.BroadcastDAO;
+import bada_project.SpringApplication.dao.GuestDAO;
 import bada_project.SpringApplication.dao.RecordingDAO;
 import bada_project.SpringApplication.dao.TrackDAO;
 import bada_project.SpringApplication.model.Broadcast;
-import bada_project.SpringApplication.model.Recording;
+import bada_project.SpringApplication.model.Guest;
 import bada_project.SpringApplication.model.Track;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
+import org.yaml.snakeyaml.scanner.ScannerImpl;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -25,17 +28,20 @@ public class BroadcastController {
     private TrackDAO trackDAO;
     @Autowired
     private RecordingDAO recordingDAO;
+    @Autowired
+    private GuestDAO guestDAO;
 
-    @RequestMapping(value = {"/broadcasts/add/save","/broadcasts/details/save"},method = RequestMethod.POST)
-    public String save(@ModelAttribute("broadcast") Broadcast broadcast) {
+    @RequestMapping(value = {"/broadcasts/add/save", "/broadcasts/details/save"}, method = RequestMethod.POST)
+    public String save(@ModelAttribute("broadcast") Broadcast broadcast, @ModelAttribute("date") String date ){
         broadcastDAO.saveOrUpdate(broadcast);
         return "redirect:/broadcasts/show";
     }
 
     @RequestMapping("/broadcasts/add")
-    public String addBroadcast(Model model){
+    public String addBroadcast(Model model) {
         Broadcast broadcast = new Broadcast();
-        model.addAttribute("broadcast",broadcast);
+        broadcast.setNr_rozglosni(1); // XD best solution
+        model.addAttribute("broadcast", broadcast);
         return "broadcasts/add-broadcast";
     }
 
@@ -47,25 +53,56 @@ public class BroadcastController {
         return "broadcasts/show-broadcasts";
     }
 
+    @RequestMapping(value = "/broadcasts/details/{id}")
+    public String detailsBroadcast(Model model, @PathVariable(name = "id") int id) {
+        Broadcast broadcast = broadcastDAO.get(id);
+        model.addAttribute("broadcast", broadcast);
+        model.addAttribute("id_broadcast", id);
+        return "broadcasts/details-broadcast";
+    }
+
     @RequestMapping("/broadcasts/details/{id}/tracks")
     public String showTracksToAdd(Model model, @PathVariable(name = "id") int id) {
         List<Track> tracks = trackDAO.getAll();
         model.addAttribute("tracks", tracks);
         List<Track> addedTracks = trackDAO.getTracksAddedToBroadcast(id);
         model.addAttribute("addedTracks", addedTracks);
+        model.addAttribute("id_broadcast", id);
         return "broadcasts/edit/tracks";
     }
 
     @RequestMapping("/broadcasts/details/{id}/tracks/add/{id2}")
-    public String addTrackToBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
+    public String addTrackToBroadcast(@PathVariable(name = "id") int id_broadcast, @PathVariable(name = "id2") int id_recording) {
         recordingDAO.bindWithBroadcast(id_recording, id_broadcast);
-        return "redirect:/broadcasts/details/"+id_broadcast+"/tracks";
+        return "redirect:/broadcasts/details/" + id_broadcast + "/tracks";
     }
 
     @RequestMapping("/broadcasts/details/{id}/tracks/delete/{id2}")
-    public String deleteTrackFromBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
+    public String deleteTrackFromBroadcast(@PathVariable(name = "id") int id_broadcast, @PathVariable(name = "id2") int id_recording) {
         recordingDAO.unbindWithBroadcast(id_recording, id_broadcast);
-        return "redirect:/broadcasts/details/"+id_broadcast+"/tracks";
+        return "redirect:/broadcasts/details/" + id_broadcast + "/tracks";
+    }
+
+    @RequestMapping("/broadcasts/details/{id}/guests")
+    public String showGuestsToAdd(Model model, @PathVariable(name = "id") int id) {
+        List<Guest> guests = guestDAO.getAll();
+        model.addAttribute("guests", guests);
+        List<Guest> addedGuests = guestDAO.getGuestsAddedToBroadcast(id);
+        model.addAttribute("addedGuests", addedGuests);
+        model.addAttribute("id_broadcast", id);
+        return "broadcasts/edit/guests";
+    }
+
+    @RequestMapping("/broadcasts/details/{id}/guests/add/{id2}")
+    public String addGuestToBroadcast(@PathVariable(name = "id") int id_broadcast, @PathVariable(name = "id2") int id_guest) {
+        guestDAO.bindWithBroadcast(id_guest, id_broadcast);
+        return "redirect:/broadcasts/details/" + id_broadcast + "/guests";
+    }
+
+    @RequestMapping("/broadcasts/details/{id}/guests/delete/{id2}")
+    public String deleteGuestFromBroadcast(@PathVariable(name = "id") int id_broadcast, @PathVariable(name = "id2") int id_guest) {
+        guestDAO.unbindWithBroadcast(id_guest, id_broadcast);
+        return "redirect:/broadcasts/details/" + id_broadcast + "/guests";
     }
 
 
@@ -76,21 +113,15 @@ public class BroadcastController {
         return "broadcasts/delete-broadcasts";
     }
 
-    @RequestMapping(value="/broadcasts/details/{id}")
-    public ModelAndView updateBroadcast(@PathVariable(name = "id")int id) {
-        ModelAndView mav = new ModelAndView("/broadcasts/details-broadcast");
-        Broadcast broadcast = broadcastDAO.get(id);
-        mav.addObject("broadcast",broadcast);
-        List<Recording> recordings = recordingDAO.getAll();
-        mav.addObject("recordings", recordings);
-        List<Track> tracks = trackDAO.getAll();
-        mav.addObject("tracks", tracks);
-        mav.addObject("options", new Options());
-        return mav;
+
+    @RequestMapping("/broadcasts/details/{id}/delete")
+    public String deleteBroadcast(@PathVariable(name = "id") int id) {
+        broadcastDAO.delete(id);
+        return "redirect:/broadcasts/show";
     }
 
     @RequestMapping("/broadcasts/delete/{id}")
-    public String deleteBroadcast(@PathVariable(name = "id")int id) {
+    public String directDeleteBroadcast(@PathVariable(name = "id") int id) {
         broadcastDAO.delete(id);
         return "redirect:/broadcasts/delete";
     }

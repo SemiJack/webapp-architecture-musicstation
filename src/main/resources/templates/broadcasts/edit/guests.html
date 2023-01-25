@@ -1,10 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Widok - Audycja - Goście</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
+    <style>
+        .child{
+            display: inline-block;
+        }
+    </style>
+
 </head>
 <body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
 
+
+<div class="container">
+    <div class="child" align="center">
+        <h1>Records</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Pseudonim</th>
+                <th>Email</th>
+                <th>Nr_telefonu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="guests: ${guests}">
+                <td th:text="${guests.nr_goscia}">ID</td>
+                <td th:text="${guests.imie}">Imie</td>
+                <td th:text="${guests.nazwisko}">Nazwisko</td>
+                <td th:text="${guests.pseudonim}">Pseudonim</td>
+                <td th:text="${guests.email}">Email</td>
+                <td th:text="${guests.nr_telefonu}">Numer telefonu</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/add/__${guests.nr_goscia}__}">Dodaj</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <a class="btn btn-primary" th:href="@{/broadcasts/details/__${id_broadcast}__}" role="button" >Wróć</a>
+    </div>
+    <div class="child">
+        <h1>Dodani Goście</h1>
+
+        <br/>
+        <table border="1" cellpadding="10" align="center">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>Pseudonim</th>
+                <th>Email</th>
+                <th>Nr_telefonu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="addedGuests: ${addedGuests}">
+                <td th:text="${addedGuests.nr_goscia}">ID</td>
+                <td th:text="${addedGuests.imie}">Imie</td>
+                <td th:text="${addedGuests.nazwisko}">Nazwisko</td>
+                <td th:text="${addedGuests.pseudonim}">Pseudonim</td>
+                <td th:text="${addedGuests.email}">Email</td>
+                <td th:text="${addedGuests.nr_telefonu}">Numer telefonu</td>
+                <td>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/delete/__${addedGuests.nr_goscia}__}">Usuń</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+<script th:src="@{/js/script.js}"></script>
 </body>
 </html>

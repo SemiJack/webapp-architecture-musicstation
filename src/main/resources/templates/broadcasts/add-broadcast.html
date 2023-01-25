@@ -20,7 +20,7 @@
     <table border="1" cellpadding="10">
       <tr>
         <td>Data</td>
-        <td><input type="text" th:field="*{data}"></td>
+        <td><input type="datetime-local" th:field="*{lokalnaData}"></td>
       </tr>
 
       <tr>
@@ -30,17 +30,18 @@
 
       <tr>
         <td>Czas trwania</td>
-        <td><input type="text" th:field="*{czas_trwania}"></td>
+        <td><input type="time" th:field="*{czas_trwania}", th:step="1"></td>
       </tr>
 
       <tr>
         <td>Numer rozgłośni</td>
-        <td><input type="text" th:field="*{nr_rozglosni}"></td>
+        <td><input type="text" th:field="*{nr_rozglosni}" readonly="readonly"></td>
       </tr>
 
     </table>
     <br/>
     <button class="btn btn-primary" type="submit">Dodaj</button>
+    <a class="btn btn-primary"  th:href="@{/broadcasts/show}">Wróć</a>
   </form>
 </div>
 <!-- Footer -->

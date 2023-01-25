@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>Audycje - Szczegóły</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <style>
         body {
             background-image: url("https://static.vecteezy.com/system/resources/previews/008/129/918/original/abstract-background-line-wave-element-sound-spectrum-equalizer-wallpaper-futuristic-particle-technology-illustration-vector.jpg");
@@ -28,7 +27,7 @@
             </tr>
             <tr>
                 <td>Data</td>
-                <td><input type="text" th:field="*{data}"></td>
+                <td><input type="datetime-local" th:field="*{lokalnaData}"></td>
             </tr>
 
             <tr>
@@ -38,13 +37,20 @@
 
             <tr>
                 <td>Czas trwania</td>
-                <td><input type="text" th:field="*{czas_trwania}"></td>
+                <td><input type="time" th:field="*{czas_trwania}" th:step="1"></td>
+            </tr>
+            <tr hidden="hidden">
+                <td>Numer rozgłośni</td>
+                <td><input type="text" th:field="*{nr_rozglosni}" readonly="readonly"></td>
             </tr>
         </table>
         <br/>
 
         <button class="btn btn-primary" type="submit">Zaktualizuj</button>
-        <button class="btn btn-primary" type="button" name="cancel" value="cancel" th:onclick="window.history.back()">Anuluj</button>
+        <a class="btn btn-primary"  th:href="@{/broadcasts/show}">Wróć</a>
+        <a class="btn btn-primary" th:href="@{__${#httpServletRequest.requestURI}__/tracks}" role="button">Dodaj/Usuń utwory</a>
+        <a class="btn btn-primary" th:href="@{__${#httpServletRequest.requestURI}__/guests}" role="button">Dodaj/Usuń gości</a>
+        <a class="btn btn-primary"  th:href="@{__${#httpServletRequest.requestURI}__/delete}">Usuń audycję</a>
 
     </form>
 

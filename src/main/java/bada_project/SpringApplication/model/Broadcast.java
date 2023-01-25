@@ -1,6 +1,10 @@
 package bada_project.SpringApplication.model;
 
+import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Broadcast {
@@ -9,6 +13,8 @@ public class Broadcast {
     private String format;
     private String czas_trwania;
     private int nr_rozglosni;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime lokalnaData;
 
     public Broadcast(){
 
@@ -20,6 +26,7 @@ public class Broadcast {
         this.format = format;
         this.czas_trwania = czas_trwania;
         this.nr_rozglosni = nr_rozglosni;
+        //this.lokalnaData = getLokalnaData();
     }
 
     public int getNr_audycji() {
@@ -36,6 +43,19 @@ public class Broadcast {
 
     public void setData(Date data) {
         this.data = data;
+    }
+
+    public LocalDateTime getLokalnaData() {
+        try {
+            lokalnaData = new java.sql.Timestamp(this.data.getTime()).toLocalDateTime();
+        }catch(NullPointerException npe){
+            return null;
+        }
+        return lokalnaData;
+    }
+
+    public void setLokalnaData(LocalDateTime dateTime){
+        this.data = java.sql.Timestamp.valueOf(dateTime);
     }
 
     public String getFormat() {

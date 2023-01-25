@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Widok - Audycje</title>
+    <title>Widok - Audycje - Usuń</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <style>
         tr#content:hover {background-color: lightgray}
@@ -21,8 +21,7 @@
 <div class="container">
     <div align="center">
         <br/>
-        <h1>Tabela Audycji</h1>
-        Aby edytować kliknij w rekord.
+        <h1>Usuń Audycje</h1>
         <br/>
 
         <br/>
@@ -32,21 +31,24 @@
                 <th>ID</th>
                 <th>Data</th>
                 <th>Format</th>
-                <th>Czas_trwania</th>
+                <th>Czas trwania</th>
+                <th>Usuń</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:title="Edytuj" id="content" th:each="broadcasts: ${broadcasts}" th:onclick="'javascript:clickRowToEdit(\'' + ${broadcasts.nr_audycji} + '\');'">
+            <tr th:title="Usuń" id="content" th:each="broadcasts: ${broadcasts}">
                 <td th:text="${broadcasts.nr_audycji}">ID</td>
                 <td th:text="${broadcasts.data}">Data</td>
                 <td th:text="${broadcasts.format}">Format</td>
                 <td th:text="${broadcasts.czas_trwania}">Czas trwania</td>
+                <td>
+                    <a th:href="@{'/broadcasts/delete/'+${broadcasts.nr_audycji}}">Usuń</a>
+                </td>
             </tr>
             </tbody>
         </table>
         <br/>
-        <a class="btn btn-primary" th:href="@{/broadcasts/add}" role="button" >Tryb dodawania</a><br/><br/>
-        <a class="btn btn-primary" th:href="@{/broadcasts/delete}" role="button" >Tryb usuwania</a>
+        <a class="btn btn-primary" th:href="@{/broadcasts/show}">Wróć</a>
     </div>
 </div>
 <!-- Footer -->
