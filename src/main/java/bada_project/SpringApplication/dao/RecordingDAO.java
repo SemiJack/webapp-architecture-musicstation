@@ -69,7 +69,7 @@ public class RecordingDAO implements DAO<Recording>{
     }
 
     public void bindWithBroadcast(int id_recording, int id_broadcast){
-        String sql = "INSERT INTO Nagranie_Audycja NR_NAGRANIA=?, NR_AUDYCJI=?";
+        String sql = "INSERT INTO Nagranie_Audycja (NR_NAGRANIA, NR_AUDYCJI) VALUES(?,?)";
         jdbcTemplate.update(sql, id_recording, id_broadcast);
     }
     public void unbindWithBroadcast(int id_recording, int id_broadcast){

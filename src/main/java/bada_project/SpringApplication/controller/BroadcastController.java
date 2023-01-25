@@ -12,8 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Controller
@@ -52,19 +53,19 @@ public class BroadcastController {
         model.addAttribute("tracks", tracks);
         List<Track> addedTracks = trackDAO.getTracksAddedToBroadcast(id);
         model.addAttribute("addedTracks", addedTracks);
-        return "/broadcasts/edit/tracks";
+        return "broadcasts/edit/tracks";
     }
 
     @RequestMapping("/broadcasts/details/{id}/tracks/add/{id2}")
     public String addTrackToBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
         recordingDAO.bindWithBroadcast(id_recording, id_broadcast);
-        return "broadcasts/edit/tracks";
+        return "redirect:/broadcasts/details/"+id_broadcast+"/tracks";
     }
 
     @RequestMapping("/broadcasts/details/{id}/tracks/delete/{id2}")
     public String deleteTrackFromBroadcast(@PathVariable(name = "id")int id_broadcast,@PathVariable(name = "id2")int id_recording) {
         recordingDAO.unbindWithBroadcast(id_recording, id_broadcast);
-        return "broadcasts/edit/tracks";
+        return "redirect:/broadcasts/details/"+id_broadcast+"/tracks";
     }
 
 

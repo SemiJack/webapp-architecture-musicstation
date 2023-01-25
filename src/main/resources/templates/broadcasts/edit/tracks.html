@@ -43,7 +43,7 @@
                 <td th:text="${tracks.czas_trwania}">Czas trwania</td>
                 <td th:text="${tracks.tytul}">Tytuł</td>
                 <td>
-                    <a th:href="@{'/broadcasts/details/'+${tracks.nr_nagrania}'/tracks/add/'+${tracks.nr_nagrania}}">Dodaj</a>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/add/__${tracks.nr_nagrania}__}">Dodaj</a>
                 </td>
             </tr>
             </tbody>
@@ -75,10 +75,9 @@
                 <td th:text="${addedTracks.czas_trwania}">Czas trwania</td>
                 <td th:text="${addedTracks.tytul}">Tytuł</td>
                 <td>
-                    <a th:href="@{/broadcasts/edit/tracks/add/'+${tracks.nr_nagrania}}">Dodaj</a>
+                    <a th:href="@{__${#httpServletRequest.requestURI}__/delete/__${addedTracks.nr_nagrania}__}">Usuń</a>
                 </td>
             </tr>
-            "/broadcasts/details/{id}/tracks/delete/{id2}"
             </tbody>
         </table>
     </div>
