@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>BŁĄD</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <link th:href="@{/css/global.css}" th:rel="stylesheet" />
+</head>
+<body>
+<!-- Header -->
+<div th:replace="fragment/header :: header"></div>
+<div align="center">
+  <h2>Znaleziono powiązany rekord w bazie! Zanim usuniesz upewnij się, że usuwany obiekt nie ma powiązań.</h2>
+  <button class="btn btn-primary" type="button" name="cancel" value="cancel" th:onclick="window.history.back()">Anuluj</button>
+</div>
+
+
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+</body>
+</html>

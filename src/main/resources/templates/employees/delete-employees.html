@@ -15,8 +15,7 @@
 <div class="container">
   <div align="center">
     <br/>
-    <h1>Tabela Pracowników</h1>
-    Aby edytować kliknij w rekord.
+    <h1>Usuwanie Pracowników</h1>
     <br/>
 
     <br/>
@@ -34,6 +33,8 @@
         <th>Nr telefonu</th>
         <th>Adres</th>
         <th>Stanowisko</th>
+        <th>Usuwanie</th>
+
 
       </tr>
       </thead>
@@ -48,26 +49,21 @@
         <td th:text="${employee.nr_konta}">Nr konta</td>
         <td th:text="${employee.email}">Email</td>
         <td th:text="${employee.nr_telefonu}">Nr telefonu</td>
-        <!--<td hidden="hidden" th:display="none" th:text="${employee.nr_rozglosni}">Nr rozgłośni</td> -->
         <td th:each="address : ${addresses}" th:if="${address.nr_adresu == employee.nr_adresu}" th:text="${address.miasto +' ul.'+ address.ulica + ' '+address.nr_lokalu}">Adres</td>
         <td th:each="jobposition : ${jobpositions}" th:if="${jobposition.nr_stanowiska == employee.nr_stanowiska}" th:text="${jobposition.nazwa}">Stanowisko</td>
-
+        <td>
+          <a th:href="@{'/employees/delete/'+${employee.nr_pracownika}}">Usuń</a>
+        </td>
       </tr>
       </tbody>
     </table>
     <br/>
+    <a class="btn btn-primary" href="/employees/show" role="button" >Wróć</a>
     <br/>
-    <a class="btn btn-primary" href="/employees/add" role="button" >Tryb dodawania</a><br/><br/>
-    <a class="btn btn-primary" href="/employees/delete" role="button" >Tryb usuwania</a>
   </div>
 </div>
 <!-- Footer -->
 <div th:replace="fragment/footer :: footer"></div>
 <script th:src="@{/js/script.js}"></script>
-<script>
-  function rowClicked(value){
-    location.href="/employees/update/"+value;
-  }
-</script>
 </body>
 </html>

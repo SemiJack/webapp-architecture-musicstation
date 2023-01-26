@@ -6,7 +6,10 @@ import bada_project.SpringApplication.dao.JobpositionDAO;
 import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
 import bada_project.SpringApplication.model.Jobposition;
+import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,6 +80,10 @@ public class EmployeeController {
     @RequestMapping("/employees/delete")
     public String viewDeleteTableEmployees(Model model) {
         List<Employee> employees = employeeDAO.getAll();
+        List<Address> addresses= addressDAO.getAll();
+        List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        model.addAttribute("jobpositions", jobpositions);
+        model.addAttribute("addresses", addresses);
         model.addAttribute("employees", employees);
         return "employees/delete-employees";
     }
@@ -102,7 +111,11 @@ public class EmployeeController {
 
     @RequestMapping("/employees/delete/{id}")
     public String deleteEmployee(@PathVariable(name = "id")int id) {
-        employeeDAO.delete(id);
+        try {
+            employeeDAO.delete(id);
+        }catch (DataAccessException e){
+            return "redirect:/errors/foundconnection";
+        }
         return "redirect:/employees/delete";
     }
 }

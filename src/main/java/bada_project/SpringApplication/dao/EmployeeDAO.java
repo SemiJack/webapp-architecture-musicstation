@@ -2,6 +2,8 @@ package bada_project.SpringApplication.dao;
 
 import bada_project.SpringApplication.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -75,9 +77,13 @@ public class EmployeeDAO implements DAO<Employee> {
      * @param nr_pracownika
      */
     @Override
-    public void delete(int  nr_pracownika) {
-        String sql = "DELETE FROM PRACOWNICY WHERE nr_pracownika=?";
-        jdbcTemplate.update(sql, nr_pracownika);
+    public void delete(int nr_pracownika) {
+        try {
+            String sql = "DELETE FROM PRACOWNICY WHERE nr_pracownika=?";
+            jdbcTemplate.update(sql, nr_pracownika);
+        }catch (DataIntegrityViolationException e){
+            System.out.println("dsdasdas");
+        }
     }
 
 
