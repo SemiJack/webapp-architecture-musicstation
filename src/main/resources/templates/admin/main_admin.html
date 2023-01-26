@@ -18,23 +18,21 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col-md-10 mt-5">
-            <form method="post" th:action="@{/index}">
                 <div class="form-group">
                     <label style="font-size:30px" th:inline="text">Witaj <a
                             style="color:lightskyblue; text-transform:capitalize"><b>[[${#httpServletRequest.remoteUser}]]</b></a>
                         w "Signal Rush"!</label>
-                    <div style="font-size:20px">Jeśli chcesz się wylogować, naciśnij przysisk "Wyloguj" poniżej.</div>
                 </div>
-
-                <button class="btn btn-primary" type="submit" onclick="successfullyLogout()" value="Sign Out">Wyloguj
-                </button>
-            </form>
             <br/>
-            <a class="btn btn-primary" href="/addresses/show" role="button" >Adresy</a><br/><br/>
-            <a class="btn btn-primary" href="/broadcasts/show" role="button" >Audycje</a><br/><br/>
-            <a class="btn btn-primary" href="/employees/show/" role="button">Pracownicy</a>
+        </div>
+        <div th:class="parent" style="width: 100%; padding: 15px 20px 15px">
+            <div th:class="child" style="display: inline-block; padding: 0px 5px 0px"><a class="btn btn-primary" href="/addresses/show" role="button" >Adresy</a></div>
+            <div th:class="child" style="display: inline-block"><a class="btn btn-primary" href="/broadcasts/show" role="button" >Audycje</a></div>
+            <div th:class="child" style="display: inline-block"><a class="btn btn-primary" href="/employees/show/" role="button">Pracownicy</a></div>
+        </div>
+        <div class="col-md-10 mt-5" style="font-size:20px">
+            Tutaj będą znajdować się powiadomienia dotyczące aktualnych zadań w naszej rozgłośni
         </div>
     </div>
 </div>

@@ -83,6 +83,10 @@
 			<scope>system</scope>
 			<systemPath>D:/_Studia/BADA/Proj2/ojdbc11.jar</systemPath>
 		</dependency>
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
