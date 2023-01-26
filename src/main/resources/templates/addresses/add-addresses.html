@@ -9,7 +9,7 @@
 </head>
 <body>
 <div th:replace="fragment/header :: header"></div>
-<div align="center">
+<div class="container" align="center">
     <br/>
 
     <form action="#" th:action="@{/addresses/add/save}" th:object="${address}" method="post">
@@ -31,6 +31,7 @@
         </table>
         <br/>
         <button class="btn btn-primary" type="submit">Dodaj</button>
+        <a class="btn btn-primary"  th:href="@{/addresses/show}">Wróć</a>
     </form>
 </div>
 <!-- Footer -->

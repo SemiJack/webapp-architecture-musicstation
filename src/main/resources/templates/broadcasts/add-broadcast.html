@@ -9,7 +9,7 @@
 </head>
 <body>
 <div th:replace="fragment/header :: header"></div>
-<div align="center">
+<div class="container" align="center">
   <br/>
 
   <form action="#" th:action="@{/broadcasts/add/save}" th:object="${broadcast}" method="post">
@@ -29,7 +29,7 @@
         <td><input type="time" th:field="*{czas_trwania}", th:step="1"></td>
       </tr>
 
-      <tr>
+      <tr style="display: none">
         <td>Numer rozgłośni</td>
         <td><input type="text" th:field="*{nr_rozglosni}" readonly="readonly"></td>
       </tr>
