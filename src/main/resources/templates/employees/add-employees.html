@@ -30,13 +30,54 @@
 
       <tr>
         <td>Data urodzenia</td>
-        <td><input type="text" th:field="*{data_urodzenia}"></td>
+        <td><input type="date" th:field="*{data_urodzenia}"></td> <!-- TODO check it -->
       </tr>
 
       <tr>
         <td>Pesel</td>
-        <td><input type="text" th:field="*{pesel}"></td>
+        <td><input type="text" pattern="[0-9]{11}" th:field="*{pesel}"></td>
       </tr>
+
+      <tr>
+        <td>Płeć</td>
+        <td><input type="text" pattern="[M|K]{1}" th:field="*{plec}"></td>
+      </tr>
+
+      <tr>
+        <td>Data zatrudnienia</td>
+        <td><input type="date" th:field="*{data_zatrudnienia}"></td>
+      </tr>
+
+      <tr>
+        <td>Nr konta</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_konta}"></td>
+      </tr>
+
+      <tr>
+        <td>Email</td>
+        <td><input type="email" th:field="*{email}"></td>
+      </tr>
+
+      <tr>
+        <td>Nr telefonu</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_telefonu}"></td>
+      </tr>
+
+      <tr>
+        <td>Nr rozgłośni</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_rozglosni}"></td>
+      </tr>
+
+      <tr>
+        <td>Nr adresu</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_adresu}"></td>
+      </tr>
+
+      <tr>
+        <td>Nr stanowiska</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_stanowiska}"></td>
+      </tr>
+
     </table>
     <br/>
     <button class="btn btn-primary" type="submit">Dodaj</button>

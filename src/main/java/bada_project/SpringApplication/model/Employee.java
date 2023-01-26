@@ -1,5 +1,6 @@
 package bada_project.SpringApplication.model;
 
+import oracle.sql.CHAR;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
@@ -11,9 +12,11 @@ public class Employee {
     private int nr_pracownika;
     private String imie;
     private String nazwisko;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_urodzenia;
     private String pesel;
     private String plec;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_zatrudnienia;
     private String nr_konta;
     private String email;
