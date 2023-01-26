@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Broadcast {
+public class Broadcast implements Comparable<Broadcast>{
     private int nr_audycji;
     private Date data;
     private String format;
@@ -90,5 +90,10 @@ public class Broadcast {
                 ", czas_trwania=" + czas_trwania +
                 ", nr_rozglosni=" + nr_rozglosni +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Broadcast o) {
+        return getData().compareTo(o.getData());
     }
 }

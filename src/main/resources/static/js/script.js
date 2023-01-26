@@ -3,7 +3,7 @@ function successfullyLogout(){
 }
 document.addEventListener("DOMContentLoaded",function (){
     if(document.getElementById('hello_message').innerText==="Jesteś zalogowany jako"){
-        document.getElementById('hello_message').style.display= 'none';
+        document.getElementById('hello_message').textContent="Zaloguj";
     }
 });
 
