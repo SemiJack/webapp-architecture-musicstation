@@ -33,6 +33,15 @@
         <th>Nazwisko</th>
         <th>Data urodzenia</th>
         <th>Pesel</th>
+        <th>Płeć</th>
+        <th>Data zatrudnienia</th>
+        <th>Nr konta</th>
+        <th>Email</th>
+        <th>Nr telefonu</th>
+        <th>Nr rozgłośni</th>
+        <th>Nr adresu</th>
+        <th>Nr stanowiska</th>
+
       </tr>
       </thead>
       <tbody>
@@ -41,6 +50,14 @@
         <td th:text="${employee.nazwisko}">Nazwisko</td>
         <td th:text="${#dates.format(employee.data_urodzenia, 'dd-MM-yyyy')}">Data urodzenia</td>
         <td th:text="${employee.pesel}">Pesel</td>
+        <td th:text="${employee.plec}">Płeć</td>
+        <td th:text="${#dates.format(employee.data_zatrudnienia, 'dd-MM-yyyy')}">Data zatrudnienia</td>
+        <td th:text="${employee.nr_konta}">Nr konta</td>
+        <td th:text="${employee.email}">Email</td>
+        <td th:text="${employee.nr_telefonu}">Nr telefonu</td>
+        <td th:text="${employee.nr_rozglosni}">Nr rozgłośni</td>
+        <td th:text="${employee.nr_adresu}">Nr adresu</td>
+        <td th:text="${employee.nr_stanowiska}">Nr stanowiska</td>
       </tr>
       </tbody>
     </table>

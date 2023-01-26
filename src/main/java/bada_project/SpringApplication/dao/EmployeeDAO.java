@@ -1,6 +1,5 @@
 package bada_project.SpringApplication.dao;
 
-import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
