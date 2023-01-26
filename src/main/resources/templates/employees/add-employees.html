@@ -60,14 +60,23 @@
         <td><input type="text" pattern="[0-9]+" th:field="*{nr_telefonu}"></td>
       </tr>
 
-      <!--<tr>
+      <tr hidden="hidden">
         <td>Nr rozgłośni</td>
         <td><input type="text" pattern="[0-9]+" th:field="*{nr_rozglosni}"></td>
-      </tr>-->
+      </tr>
 
       <tr>
-        <td>Nr adresu</td>
-        <td><input type="text" pattern="[0-9]+" th:field="*{nr_adresu}"></td>
+        <td>Adres</td>
+        <td>
+          <select th:field="*{nr_adresu}">
+            <option th:id="adres" th:each="address: ${addresses}"
+                    th:value="${address.nr_adresu}"
+                    th:text="${address.miasto + ' ul.'+address.ulica + ' ' +address.nr_lokalu}">
+            </option>
+          </select>
+        </td>
+        <!--<td>Nr adresu</td>
+        <td><input type="text" pattern="[0-9]+" th:field="*{nr_adresu}"></td>-->
       </tr>
 
       <tr>
