@@ -10,8 +10,8 @@
 <body>
 <!-- Header -->
 <div th:replace="fragment/header :: header"></div>
-<div class="container" align="center">
-  <h1> Edytuj</h1>
+<div class="container">
+  <h1> Edytuj dane pracownika</h1>
   <br/>
   <div sec:authorize="hasRole('ROLE_ADMIN')">
     <form action="#" th:action="@{/employees/update/save}" th:object="${employees}" method="post">

@@ -25,22 +25,23 @@ public class EmployeeController {
     @Autowired
     private JobpositionDAO jobpositionDAO;
 
-    @RequestMapping(value = {"/employees/add/save","/employees/update/save"},method = RequestMethod.POST)
+    @RequestMapping(value = {"/employees/add/save", "/employees/update/save"}, method = RequestMethod.POST)
     public String save(@ModelAttribute("employee") Employee employee) {
         employeeDAO.saveOrUpdate(employee);
         return "redirect:/employees/show";
     }
 
-    @RequestMapping(value = {"/employee/update/saveme"},method = RequestMethod.POST)
+    @RequestMapping(value = {"/employee/update/saveme"}, method = RequestMethod.POST)
     public String saveme(@ModelAttribute("employee") Employee employee) {
         employeeDAO.saveOrUpdate(employee);
         return "redirect:/employee/show/employee";
     }
+
     @RequestMapping("/employees/add")
-    public String addEmployee(Model model){
+    public String addEmployee(Model model) {
         Employee employee = new Employee();
         employee.setNr_rozglosni(1);
-        List<Address> addresses= addressDAO.getAll();
+        List<Address> addresses = addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
         Address newaddress = new Address();
         model.addAttribute("newaddress", newaddress);
@@ -51,13 +52,14 @@ public class EmployeeController {
     }
 
     @RequestMapping("/employees/add/address")
-    public String addAddressForEmployee(Model model){
+    public String addAddressForEmployee(Model model) {
         Address newaddress = new Address();
         model.addAttribute("newaddress", newaddress);
         return "employees/add/address";
     }
+
     @RequestMapping("/employees/add/address/save")
-    public String saveAddAddressForEmployee(@ModelAttribute("address") Address address){;
+    public String saveAddAddressForEmployee(@ModelAttribute("address") Address address) {
         addressDAO.saveOrUpdate(address);
         return "redirect:/employees/add";
     }
@@ -66,7 +68,7 @@ public class EmployeeController {
     @RequestMapping("/employees/show")
     public String viewTableEmployees(Model model) {
         List<Employee> employees = employeeDAO.getAll();
-        List<Address> addresses= addressDAO.getAll();
+        List<Address> addresses = addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
         model.addAttribute("jobpositions", jobpositions);
         model.addAttribute("addresses", addresses);
@@ -77,7 +79,7 @@ public class EmployeeController {
     @RequestMapping("/employees/delete")
     public String viewDeleteTableEmployees(Model model) {
         List<Employee> employees = employeeDAO.getAll();
-        List<Address> addresses= addressDAO.getAll();
+        List<Address> addresses = addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
         model.addAttribute("jobpositions", jobpositions);
         model.addAttribute("addresses", addresses);
@@ -85,8 +87,8 @@ public class EmployeeController {
         return "employees/delete-employees";
     }
 
-    @RequestMapping(value="/employee/show/{user}")
-    public ModelAndView viewEmployee(@PathVariable(name = "user")String user) {
+    @RequestMapping(value = "/employee/show/{user}")
+    public ModelAndView viewEmployee(@PathVariable(name = "user") String user) {
         ModelAndView mav = new ModelAndView("/employee/show-employee");
         List<Employee> employee = new ArrayList<>();
         employee.add(employeeDAO.getByName(user));
@@ -94,23 +96,23 @@ public class EmployeeController {
         return mav;
     }
 
-    @RequestMapping(value={"/employees/update/{id}","/employee/update/{id}"})
-    public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
+    @RequestMapping(value = {"/employees/update/{id}", "/employee/update/{id}"})
+    public ModelAndView updateEmployee(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("/employees/update-employees");
         Employee employee = employeeDAO.get(id);
-        List<Address> addresses= addressDAO.getAll();
+        List<Address> addresses = addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
         mav.addObject("jobpositions", jobpositions);
         mav.addObject("addresses", addresses);
-        mav.addObject("employees",employee);
+        mav.addObject("employees", employee);
         return mav;
     }
 
     @RequestMapping("/employees/delete/{id}")
-    public String deleteEmployee(@PathVariable(name = "id")int id) {
+    public String deleteEmployee(@PathVariable(name = "id") int id) {
         try {
             employeeDAO.delete(id);
-        }catch (DataAccessException e){
+        } catch (DataAccessException e) {
             return "redirect:/errors/foundconnection";
         }
         return "redirect:/employees/delete";

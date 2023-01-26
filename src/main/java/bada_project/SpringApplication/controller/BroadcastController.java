@@ -11,14 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.scanner.ScannerImpl;
 
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -33,7 +27,7 @@ public class BroadcastController {
     private GuestDAO guestDAO;
 
     @RequestMapping(value = {"/broadcasts/add/save", "/broadcasts/details/save"}, method = RequestMethod.POST)
-    public String save(@ModelAttribute("broadcast") Broadcast broadcast, @ModelAttribute("date") String date ){
+    public String save(@ModelAttribute("broadcast") Broadcast broadcast, @ModelAttribute("date") String date) {
         broadcastDAO.saveOrUpdate(broadcast);
         return "redirect:/broadcasts/show";
     }

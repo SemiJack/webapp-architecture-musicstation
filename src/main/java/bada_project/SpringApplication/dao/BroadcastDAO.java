@@ -19,53 +19,37 @@ public class BroadcastDAO implements DAO<Broadcast> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    /**
-     * Return one Audycja object with specified id.
-     * @param id
-     * @return Audycja object
-     */
+
     @Override
     public Broadcast get(int id) {
         String sql = "SELECT * FROM audycje WHERE nr_audycji=" + id;
         return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Broadcast.class));
     }
 
-    /**
-     * Get all records from table
-     * @return list of all records
-     */
     @Override
     public List<Broadcast> getAll() {
         String sql = "SELECT * FROM AUDYCJE";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Broadcast.class));
     }
 
-    /**
-     * Add new or update record to table. Auto set unique key value.
-     * @param audycja
-     */
+
     @Override
     public void saveOrUpdate(Broadcast audycja) {
         // update
-        if(audycja.getNr_audycji()>0){
+        if (audycja.getNr_audycji() > 0) {
             String sql = "UPDATE AUDYCJE SET DATA=?, FORMAT=?, CZAS_TRWANIA=?, NR_ROZGLOSNI=? WHERE NR_AUDYCJI=?";
-            jdbcTemplate.update(sql,audycja.getData(),audycja.getFormat(),audycja.getCzas_trwania(), audycja.getNr_rozglosni(),audycja.getNr_audycji());
-        }else{
+            jdbcTemplate.update(sql, audycja.getData(), audycja.getFormat(), audycja.getCzas_trwania(), audycja.getNr_rozglosni(), audycja.getNr_audycji());
+        } else {
             // insert
             String sql = "INSERT INTO audycje (DATA, FORMAT, CZAS_TRWANIA, NR_ROZGLOSNI) VALUES(?,?,?,?)";
-            jdbcTemplate.update(sql,audycja.getData(),audycja.getFormat(),audycja.getCzas_trwania(),audycja.getNr_rozglosni());
+            jdbcTemplate.update(sql, audycja.getData(), audycja.getFormat(), audycja.getCzas_trwania(), audycja.getNr_rozglosni());
         }
     }
 
-    /**
-     * Delete from database
-     * @param id
-     */
+
     @Override
-    public void delete(int  id) {
+    public void delete(int id) {
         String sql = "DELETE FROM audycje WHERE nr_audycji=?";
         jdbcTemplate.update(sql, id);
     }
-
-
 }

@@ -16,16 +16,16 @@ public class TrackController {
     @Autowired
     private TrackDAO trackDAO;
 
-    @RequestMapping(value = {"/tracks/add/save","/tracks/update/save"},method = RequestMethod.POST)
+    @RequestMapping(value = {"/tracks/add/save", "/tracks/update/save"}, method = RequestMethod.POST)
     public String save(@ModelAttribute("tracks") Track track) {
         trackDAO.saveOrUpdate(track);
         return "redirect:/tracks/show";
     }
 
     @RequestMapping("/tracks/add")
-    public String addTrack(Model model){
+    public String addTrack(Model model) {
         Track track = new Track();
-        model.addAttribute("track",track);
+        model.addAttribute("track", track);
         return "tracks/add-tracks";
     }
 
@@ -44,16 +44,16 @@ public class TrackController {
         return "tracks/delete-tracks";
     }
 
-    @RequestMapping(value="/tracks/update/{id}")
-    public ModelAndView updateTrack(@PathVariable(name = "id")int id) {
+    @RequestMapping(value = "/tracks/update/{id}")
+    public ModelAndView updateTrack(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("/tracks/update-tracks");
         Track track = trackDAO.get(id);
-        mav.addObject("track",track);
+        mav.addObject("track", track);
         return mav;
     }
 
     @RequestMapping("/tracks/delete/{id}")
-    public String deleteTrack(@PathVariable(name = "id")int id) {
+    public String deleteTrack(@PathVariable(name = "id") int id) {
         trackDAO.delete(id);
         return "redirect:/tracks/delete";
     }

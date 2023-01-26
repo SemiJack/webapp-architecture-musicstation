@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -35,13 +34,6 @@ public class AddressController {
         List<Address> addresses = addressDAO.getAll();
         model.addAttribute("addresses", addresses);
         return "addresses/show-addresses";
-    }
-
-    @RequestMapping("/addresses/prototype")
-    public String protytype(Model model) {
-        List<Address> addresses = addressDAO.getAll();
-        model.addAttribute("addresses", addresses);
-        return "addresses/prototype";
     }
 
     @RequestMapping("/addresses/delete")

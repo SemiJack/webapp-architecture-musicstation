@@ -2,7 +2,6 @@ package bada_project.SpringApplication.dao;
 
 import bada_project.SpringApplication.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,11 +22,7 @@ public class EmployeeDAO implements DAO<Employee> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    /**
-     * Return one Employee object with specified nr_pracownika.
-     * @param nr_pracownika
-     * @return Employee object
-     */
+
     @Override
     public Employee get(int nr_pracownika) {
         String sql = "SELECT * FROM PRACOWNICY WHERE nr_pracownika=" + nr_pracownika;
@@ -36,7 +31,7 @@ public class EmployeeDAO implements DAO<Employee> {
 
     public Employee getByName(String user) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        LinkedList<String> result = new LinkedList<String>();
+        LinkedList<String> result = new LinkedList<>();
         for (String w : name.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")) {
             result.add(w);
         }
@@ -44,44 +39,34 @@ public class EmployeeDAO implements DAO<Employee> {
         return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Employee.class), result.get(0), result.get(1));
     }
 
-    /**
-     * Get all records from table
-     * @return list of all records
-     */
+
     @Override
     public List<Employee> getAll() {
         String sql = "SELECT * FROM PRACOWNICY";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Employee.class));
     }
 
-    /**
-     * Add new or update record to table. Auto set unique key value.
-     * @param employee
-     */
+
     @Override
     public void saveOrUpdate(Employee employee) {
-        if(employee.getNr_pracownika()>0){
+        if (employee.getNr_pracownika() > 0) {
             // update
             String sql = "UPDATE PRACOWNICY SET IMIE=?, NAZWISKO=?, DATA_URODZENIA=?, PESEL=?, PLEC=?,DATA_ZATRUDNIENIA=?, NR_KONTA=?,EMAIL=?,NR_TELEFONU=?, NR_ROZGLOSNI=?,NR_ADRESU=?,NR_STANOWISKA=? WHERE NR_PRACOWNIKA=?";
-            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(),employee.getData_zatrudnienia(),employee.getNr_konta(),employee.getEmail(),employee.getNr_telefonu(),employee.getNr_rozglosni(),employee.getNr_adresu(), employee.getNr_stanowiska(), employee.getNr_pracownika());
-        }else{
+            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(), employee.getData_zatrudnienia(), employee.getNr_konta(), employee.getEmail(), employee.getNr_telefonu(), employee.getNr_rozglosni(), employee.getNr_adresu(), employee.getNr_stanowiska(), employee.getNr_pracownika());
+        } else {
             // insert
             String sql = "INSERT INTO PRACOWNICY (IMIE, NAZWISKO, DATA_URODZENIA, PESEL, PLEC, DATA_ZATRUDNIENIA, NR_KONTA,EMAIL,NR_TELEFONU, NR_ROZGLOSNI,NR_ADRESU,NR_STANOWISKA) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
-            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(),employee.getData_zatrudnienia(),employee.getNr_konta(),employee.getEmail(),employee.getNr_telefonu(),employee.getNr_rozglosni(),employee.getNr_adresu(), employee.getNr_stanowiska());
+            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(), employee.getData_zatrudnienia(), employee.getNr_konta(), employee.getEmail(), employee.getNr_telefonu(), employee.getNr_rozglosni(), employee.getNr_adresu(), employee.getNr_stanowiska());
         }
     }
 
 
-    /**
-     * Delete from database
-     * @param nr_pracownika
-     */
     @Override
     public void delete(int nr_pracownika) {
         try {
             String sql = "DELETE FROM PRACOWNICY WHERE nr_pracownika=?";
             jdbcTemplate.update(sql, nr_pracownika);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             System.out.println("dsdasdas");
         }
     }
