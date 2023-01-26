@@ -1,7 +1,6 @@
 package bada_project.SpringApplication;
 
 public enum Roles {
-    //TODO
     USER, //każdy pracownik
     ADMIN, //wie wszystko
     TECH, //dostęp do sprzętu
