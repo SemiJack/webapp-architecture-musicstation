@@ -10,3 +10,7 @@ body {
 tr#content:hover {
     background-color: lightgray
 }
+
+.adm-btn{
+    width: 100px;
+}
