@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dodaj adresy</title>
+  <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <link th:href="@{/css/global.css}" th:rel="stylesheet" />
+</head>
+<body>
+<div th:replace="fragment/header :: header"></div>
+<div align="center">
+  <br/>
+
+  <form action="#" th:action="@{/employees/add/address/save}" th:object="${newaddress}" method="post">
+    <table border="1" cellpadding="10">
+      <tr>
+        <td>Miasto</td>
+        <td><input type="text" pattern="{1-30}" th:field="*{miasto}"></td>
+      </tr>
+
+      <tr>
+        <td>Ulica</td>
+        <td><input type="text" pattern="{1-30}" th:field="*{ulica}"></td>
+      </tr>
+
+      <tr>
+        <td>Numer lokalu</td>
+        <td><input type="text" pattern="{1-4}" th:field="*{nr_lokalu}"></td>
+      </tr>
+    </table>
+    <br/>
+
+    <button id="buton" class="btn btn-primary" type="submit">Dodaj adres</button>
+    <a class="btn btn-primary" href="/employees/add" role="button" >Wróć</a>
+  </form>
+</div>
+<!-- Footer -->
+<div th:replace="fragment/footer :: footer"></div>
+
+</body>
+</html>

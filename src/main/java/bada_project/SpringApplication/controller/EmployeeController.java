@@ -40,10 +40,24 @@ public class EmployeeController {
         employee.setNr_rozglosni(1);
         List<Address> addresses= addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        Address newaddress = new Address();
+        model.addAttribute("newaddress", newaddress);
         model.addAttribute("jobpositions", jobpositions);
         model.addAttribute("addresses", addresses);
         model.addAttribute("employee", employee);
         return "employees/add-employees";
+    }
+
+    @RequestMapping("/employees/add/address")
+    public String addAddressForEmployee(Model model){
+        Address newaddress = new Address();
+        model.addAttribute("newaddress", newaddress);
+        return "employees/add/address";
+    }
+    @RequestMapping("/employees/add/address/save")
+    public String saveAddAddressForEmployee(@ModelAttribute("address") Address address){;
+        addressDAO.saveOrUpdate(address);
+        return "redirect:/employees/add";
     }
 
 

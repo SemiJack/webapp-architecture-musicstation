@@ -16,24 +16,26 @@
         <table border="1" cellpadding="10">
             <tr>
                 <td>Miasto</td>
-                <td><input type="text" th:field="*{miasto}"></td>
+                <td><input type="text" pattern="{1-30}" th:field="*{miasto}"></td>
             </tr>
 
             <tr>
                 <td>Ulica</td>
-                <td><input type="text" th:field="*{ulica}"></td>
+                <td><input type="text" pattern="{1-30}" th:field="*{ulica}"></td>
             </tr>
 
             <tr>
                 <td>Numer lokalu</td>
-                <td><input type="text" th:field="*{nr_lokalu}"></td>
+                <td><input type="text" pattern="{1-4}" th:field="*{nr_lokalu}"></td>
             </tr>
         </table>
         <br/>
-        <button class="btn btn-primary" type="submit">Dodaj</button>
+
+        <button id="buton" class="btn btn-primary" type="submit">Dodaj</button>
     </form>
 </div>
 <!-- Footer -->
 <div th:replace="fragment/footer :: footer"></div>
+
 </body>
 </html>
