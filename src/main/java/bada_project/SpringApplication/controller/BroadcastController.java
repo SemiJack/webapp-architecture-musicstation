@@ -17,6 +17,7 @@ import org.yaml.snakeyaml.scanner.ScannerImpl;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class BroadcastController {
     @RequestMapping("/broadcasts/show")
     public String viewTableBroadcasts(Model model) {
         List<Broadcast> broadcasts = broadcastDAO.getAll();
+        Collections.sort(broadcasts);
         model.addAttribute("broadcasts", broadcasts);
         return "broadcasts/show-broadcasts";
     }

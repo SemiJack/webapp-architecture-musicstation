@@ -31,7 +31,7 @@
             <tbody>
             <tr th:title="Edytuj" id="content" th:each="broadcasts: ${broadcasts}" th:onclick="'javascript:clickRowToEdit(\'' + ${broadcasts.nr_audycji} + '\');'">
                 <td th:text="${broadcasts.nr_audycji}">ID</td>
-                <td th:text="${broadcasts.data}">Data</td>
+                <td th:text="${#dates.format(broadcasts.data, 'dd-MM-yyyy')}">Data</td>
                 <td th:text="${broadcasts.format}">Format</td>
                 <td th:text="${broadcasts.czas_trwania}">Czas trwania</td>
             </tr>
