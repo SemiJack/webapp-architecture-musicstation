@@ -2,8 +2,10 @@ package bada_project.SpringApplication.controller;
 
 import bada_project.SpringApplication.dao.AddressDAO;
 import bada_project.SpringApplication.dao.EmployeeDAO;
+import bada_project.SpringApplication.dao.JobpositionDAO;
 import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
+import bada_project.SpringApplication.model.Jobposition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ public class EmployeeController {
     private EmployeeDAO employeeDAO;
     @Autowired
     private AddressDAO addressDAO;
+    @Autowired
+    private JobpositionDAO jobpositionDAO;
 
     @RequestMapping(value = {"/employees/add/save","/employees/update/save"},method = RequestMethod.POST)
     public String save(@ModelAttribute("employee") Employee employee) {
@@ -35,6 +39,8 @@ public class EmployeeController {
         Employee employee = new Employee();
         employee.setNr_rozglosni(1);
         List<Address> addresses= addressDAO.getAll();
+        List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        model.addAttribute("jobposinions", jobpositions);
         model.addAttribute("addresses", addresses);
         model.addAttribute("employee", employee);
         return "employees/add-employees";

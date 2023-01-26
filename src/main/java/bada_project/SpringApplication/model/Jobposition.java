@@ -1,15 +1,15 @@
 package bada_project.SpringApplication.model;
 
-public class Stanowisko {
+public class Jobposition {
     private int nr_stanowiska;
     private String nazwa;
     private String opis;
 
-    public Stanowisko(){
+    public Jobposition(){
 
     }
 
-    public Stanowisko(int nr_stanowiska, String nazwa, String opis) {
+    public Jobposition(int nr_stanowiska, String nazwa, String opis) {
         this.nr_stanowiska = nr_stanowiska;
         this.nazwa = nazwa;
         this.opis = opis;
@@ -41,7 +41,7 @@ public class Stanowisko {
 
     @Override
     public String toString() {
-        return "Stanowisko{" +
+        return "Jobposition{" +
                 "nr_stanowiska=" + nr_stanowiska +
                 ", nazwa='" + nazwa + '\'' +
                 ", opis='" + opis + '\'' +
