@@ -1,0 +1,7 @@
+body {
+    background-image: url("https://static.vecteezy.com/system/resources/previews/008/129/918/original/abstract-background-line-wave-element-sound-spectrum-equalizer-wallpaper-futuristic-particle-technology-illustration-vector.jpg");
+}
+
+tr#content:hover {
+    background-color: lightgray
+}

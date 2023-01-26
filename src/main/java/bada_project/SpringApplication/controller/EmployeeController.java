@@ -30,6 +30,7 @@ public class EmployeeController {
     @RequestMapping("/employees/add")
     public String addEmployee(Model model){
         Employee employee = new Employee();
+        employee.setNr_rozglosni(1);
         model.addAttribute("employee", employee);
         return "employees/add-employees";
     }
@@ -40,13 +41,6 @@ public class EmployeeController {
         List<Employee> employees = employeeDAO.getAll();
         model.addAttribute("employees", employees);
         return "employees/show-employees";
-    }
-
-    @RequestMapping("/employees/prototype")
-    public String protytype(Model model) {
-        List<Employee> employees = employeeDAO.getAll();
-        model.addAttribute("employees", employees);
-        return "employees/prototype";
     }
 
     @RequestMapping("/employees/delete")
@@ -69,6 +63,7 @@ public class EmployeeController {
     public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
         ModelAndView mav = new ModelAndView("/employees/update-employees");
         Employee employee = employeeDAO.get(id);
+
         mav.addObject("employees",employee);
         return mav;
     }
