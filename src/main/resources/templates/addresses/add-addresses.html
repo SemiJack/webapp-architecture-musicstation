@@ -16,17 +16,17 @@
         <table border="1" cellpadding="10">
             <tr>
                 <td>Miasto</td>
-                <td><input type="text" th:field="*{miasto}"></td>
+                <td><input type="text" th:field="*{miasto}" th:required="required"></td>
             </tr>
 
             <tr>
                 <td>Ulica</td>
-                <td><input type="text" th:field="*{ulica}"></td>
+                <td><input type="text" th:field="*{ulica}" th:required="required"></td>
             </tr>
 
             <tr>
                 <td>Numer lokalu</td>
-                <td><input type="text" th:field="*{nr_lokalu}"></td>
+                <td><input type="text" th:field="*{nr_lokalu}" th:required="required"></td>
             </tr>
         </table>
         <br/>
