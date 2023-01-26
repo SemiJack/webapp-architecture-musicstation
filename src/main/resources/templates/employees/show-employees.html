@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
@@ -13,14 +13,14 @@
 <div th:replace="fragment/header :: header"></div>
 
 <div class="container">
-  <div align="center">
+  <div th:align="center">
     <br/>
     <h1>Tabela Pracowników</h1>
     Aby edytować kliknij w rekord.
     <br/>
 
     <br/>
-    <table border="1" cellpadding="10" align="center">
+    <table th:border="1" th:cellpadding="10" th:align="center">
       <thead>
       <tr>
         <th>Imię</th>
@@ -48,7 +48,6 @@
         <td th:text="${employee.nr_konta}">Nr konta</td>
         <td th:text="${employee.email}">Email</td>
         <td th:text="${employee.nr_telefonu}">Nr telefonu</td>
-        <!--<td hidden="hidden" th:display="none" th:text="${employee.nr_rozglosni}">Nr rozgłośni</td> -->
         <td th:each="address : ${addresses}" th:if="${address.nr_adresu == employee.nr_adresu}" th:text="${address.miasto +' ul.'+ address.ulica + ' '+address.nr_lokalu}">Adres</td>
         <td th:each="jobposition : ${jobpositions}" th:if="${jobposition.nr_stanowiska == employee.nr_stanowiska}" th:text="${jobposition.nazwa}">Stanowisko</td>
 
