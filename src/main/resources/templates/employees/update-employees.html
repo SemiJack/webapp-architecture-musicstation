@@ -135,7 +135,7 @@
 
         <tr>
           <td>Data zatrudnienia</td>
-          <td><input type="date" th:field="*{data_zatrudnienia}" th:required="required"></td>
+          <td><input type="date" th:field="*{data_zatrudnienia}" th:required="required" readonly="readonly"></td>
         </tr>
 
         <tr>
@@ -170,7 +170,7 @@
         <tr>
           <td>Stanowisko</td>
           <td>
-            <select th:field="*{nr_stanowiska}" th:required="required">
+            <select th:field="*{nr_stanowiska}" th:required="required" disabled>
               <option th:each="jobposition: ${jobpositions}"
                       th:value="${jobposition.nr_stanowiska}"
                       th:text="${jobposition.nazwa}">
