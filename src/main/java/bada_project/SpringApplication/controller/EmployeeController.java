@@ -40,7 +40,7 @@ public class EmployeeController {
         employee.setNr_rozglosni(1);
         List<Address> addresses= addressDAO.getAll();
         List<Jobposition> jobpositions = jobpositionDAO.getAll();
-        model.addAttribute("jobposinions", jobpositions);
+        model.addAttribute("jobpositions", jobpositions);
         model.addAttribute("addresses", addresses);
         model.addAttribute("employee", employee);
         return "employees/add-employees";
@@ -50,6 +50,10 @@ public class EmployeeController {
     @RequestMapping("/employees/show")
     public String viewTableEmployees(Model model) {
         List<Employee> employees = employeeDAO.getAll();
+        List<Address> addresses= addressDAO.getAll();
+        List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        model.addAttribute("jobpositions", jobpositions);
+        model.addAttribute("addresses", addresses);
         model.addAttribute("employees", employees);
         return "employees/show-employees";
     }
@@ -74,7 +78,10 @@ public class EmployeeController {
     public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
         ModelAndView mav = new ModelAndView("/employees/update-employees");
         Employee employee = employeeDAO.get(id);
-
+        List<Address> addresses= addressDAO.getAll();
+        List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        mav.addObject("jobpositions", jobpositions);
+        mav.addObject("addresses", addresses);
         mav.addObject("employees",employee);
         return mav;
     }

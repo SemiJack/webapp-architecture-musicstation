@@ -22,17 +22,17 @@
 
       <tr>
         <td>Imię</td>
-        <td><input type="text" th:field="*{imie}"></td>
+        <td><input type="text" th:field="*{imie}" th:required="required"></td>
       </tr>
 
       <tr>
         <td>Nazwisko</td>
-        <td><input type="text" th:field="*{nazwisko}"></td>
+        <td><input type="text" th:field="*{nazwisko}" th:required="required"></td>
       </tr>
 
       <tr>
         <td>Data urodzenia</td>
-        <td><input type="date" th:field="*{data_urodzenia}"></td>
+        <td><input type="date" th:field="*{data_urodzenia}" th:required="required"></td>
       </tr>
 
       <tr>
@@ -42,12 +42,12 @@
 
       <tr>
         <td>Plec</td>
-        <td><input type="text" pattern="[K|M]{1}" th:field="*{plec}"></td>
+        <td><input type="text" pattern="[K|M]{1}" th:field="*{plec}" th:required="required"></td>
       </tr>
 
       <tr>
         <td>Data zatrudnienia</td>
-        <td><input type="date" th:field="*{data_zatrudnienia}"></td>
+        <td><input type="date" th:field="*{data_zatrudnienia}" th:required="required"></td>
       </tr>
 
       <tr>
@@ -66,13 +66,29 @@
         <td>Nr rozgłośni</td>
         <td><input type="text" pattern="[0-9]+" th:field="*{nr_rozglosni}" readonly="readonly"></td>
       </tr>
+
       <tr>
-        <td>Nr adresu</td>
-        <td><input type="text" pattern="[0-9]+" th:field="*{nr_adresu}"></td>
+        <td>Adres</td>
+        <td>
+          <select th:field="*{nr_adresu}" th:required="required">
+            <option th:each="address: ${addresses}"
+                    th:value="${address.nr_adresu}"
+                    th:text="${address.miasto + ' ul.'+address.ulica + ' ' +address.nr_lokalu}">
+            </option>
+          </select>
+        </td>
       </tr>
+
       <tr>
-        <td>Nr stanowiska</td>
-        <td><input type="text" pattern="[0-9]+" th:field="*{nr_stanowiska}"></td>
+        <td>Stanowisko</td>
+        <td>
+          <select th:field="*{nr_stanowiska}" th:required="required">
+            <option th:each="jobposition: ${jobpositions}"
+                    th:value="${jobposition.nr_stanowiska}"
+                    th:text="${jobposition.nazwa}">
+            </option>
+          </select>
+        </td>
       </tr>
     </table>
     <br/>

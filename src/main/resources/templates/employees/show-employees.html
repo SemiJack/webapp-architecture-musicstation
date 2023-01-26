@@ -32,9 +32,8 @@
         <th>Nr konta</th>
         <th>Email</th>
         <th>Nr telefonu</th>
-        <!--<th>Nr rozgłośni</th>-->
-        <th>Nr adresu</th>
-        <th>Nr stanowiska</th>
+        <th>Adres</th>
+        <th>Stanowisko</th>
 
       </tr>
       </thead>
@@ -50,8 +49,9 @@
         <td th:text="${employee.email}">Email</td>
         <td th:text="${employee.nr_telefonu}">Nr telefonu</td>
         <!--<td hidden="hidden" th:display="none" th:text="${employee.nr_rozglosni}">Nr rozgłośni</td> -->
-        <td th:text="${employee.nr_adresu}">Nr adresu</td>
-        <td th:text="${employee.nr_stanowiska}">Nr stanowiska</td>
+        <td th:each="address : ${addresses}" th:if="${address.nr_adresu == employee.nr_adresu}" th:text="${address.miasto +' ul.'+ address.ulica + ' '+address.nr_lokalu}">Adres</td>
+        <td th:each="jobposition : ${jobpositions}" th:if="${jobposition.nr_stanowiska == employee.nr_stanowiska}" th:text="${jobposition.nazwa}">Stanowisko</td>
+
       </tr>
       </tbody>
     </table>
