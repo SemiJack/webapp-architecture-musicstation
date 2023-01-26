@@ -64,8 +64,9 @@ public class AddressDAO implements DAO<Address> {
      */
     @Override
     public void delete(int  nr_adresu) {
-        String sql = "DELETE FROM ADRESY WHERE nr_adresu=?";
-        jdbcTemplate.update(sql, nr_adresu);
+        String sql = "DELETE FROM ADRESY WHERE nr_adresu=? AND NOT EXISTS(SELECT * FROM PRACOWNICY p WHERE nr_adresu=?)";
+
+        jdbcTemplate.update(sql, nr_adresu, nr_adresu);
     }
 
 
