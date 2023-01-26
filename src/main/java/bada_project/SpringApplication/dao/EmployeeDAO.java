@@ -61,12 +61,12 @@ public class EmployeeDAO implements DAO<Employee> {
     public void saveOrUpdate(Employee employee) {
         if(employee.getNr_pracownika()>0){
             // update
-            String sql = "UPDATE PRACOWNICY SET imie=?, nazwisko=?, data_urodzenia=?, pesel=? WHERE nr_pracownika=?";
-            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel());
+            String sql = "UPDATE PRACOWNICY SET IMIE=?, NAZWISKO=?, DATA_URODZENIA=?, PESEL=?, PLEC=?,DATA_ZATRUDNIENIA=?, NR_KONTA=?,EMAIL=?,NR_TELEFONU=?, NR_ROZGLOSNI=?,NR_ADRESU=?,NR_STANOWISKA=? WHERE NR_PRACOWNIKA=?";
+            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(),employee.getData_zatrudnienia(),employee.getNr_konta(),employee.getEmail(),employee.getNr_telefonu(),employee.getNr_rozglosni(),employee.getNr_adresu(), employee.getNr_stanowiska(), employee.getNr_pracownika());
         }else{
             // insert
-            String sql = "INSERT INTO PRACOWNICY (imie, nazwisko, data_urodzenia, pesel) VALUES(?,?,?)";
-            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel());
+            String sql = "INSERT INTO PRACOWNICY (IMIE, NAZWISKO, DATA_URODZENIA, PESEL, PLEC, DATA_ZATRUDNIENIA, NR_KONTA,EMAIL,NR_TELEFONU, NR_ROZGLOSNI,NR_ADRESU,NR_STANOWISKA) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+            jdbcTemplate.update(sql, employee.getImie(), employee.getNazwisko(), employee.getData_urodzenia(), employee.getPesel(), employee.getPlec(),employee.getData_zatrudnienia(),employee.getNr_konta(),employee.getEmail(),employee.getNr_telefonu(),employee.getNr_rozglosni(),employee.getNr_adresu(), employee.getNr_stanowiska());
         }
     }
 

@@ -26,7 +26,6 @@ public class Broadcast {
         this.format = format;
         this.czas_trwania = czas_trwania;
         this.nr_rozglosni = nr_rozglosni;
-        //this.lokalnaData = getLokalnaData();
     }
 
     public int getNr_audycji() {

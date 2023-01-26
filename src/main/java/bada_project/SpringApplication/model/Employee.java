@@ -1,7 +1,10 @@
 package bada_project.SpringApplication.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Employee {
@@ -19,6 +22,11 @@ public class Employee {
     private int nr_adresu;
     private int nr_stanowiska;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime lokalnaData_urodzenia;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private LocalDateTime lokalnaData_zatrudnienia;
     public Employee(){
 
     }
@@ -71,6 +79,31 @@ public class Employee {
         this.data_urodzenia = data_urodzenia;
     }
 
+    public LocalDateTime getLokalnaData_urodzenia() {
+        try {
+            lokalnaData_urodzenia = new java.sql.Timestamp(this.data_urodzenia.getTime()).toLocalDateTime();
+        }catch(NullPointerException npe){
+            return null;
+        }
+        return lokalnaData_urodzenia;
+    }
+
+    public void setLokalnaData_urodzenia(LocalDateTime dateTime){
+        this.data_urodzenia = java.sql.Timestamp.valueOf(dateTime);
+    }
+
+    public LocalDateTime getLokalnaData_zatrudnienia() {
+        try {
+            lokalnaData_zatrudnienia = new java.sql.Timestamp(this.data_zatrudnienia.getTime()).toLocalDateTime();
+        }catch(NullPointerException npe){
+            return null;
+        }
+        return lokalnaData_zatrudnienia;
+    }
+
+    public void setLokalnaData_zatrudnienia(LocalDateTime dateTime){
+        this.data_zatrudnienia = java.sql.Timestamp.valueOf(dateTime);
+    }
     public String getPesel() {
         return pesel;
     }
