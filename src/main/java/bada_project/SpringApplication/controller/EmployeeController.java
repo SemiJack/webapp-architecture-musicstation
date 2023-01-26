@@ -6,21 +6,13 @@ import bada_project.SpringApplication.dao.JobpositionDAO;
 import bada_project.SpringApplication.model.Address;
 import bada_project.SpringApplication.model.Employee;
 import bada_project.SpringApplication.model.Jobposition;
-import oracle.jdbc.OracleDatabaseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +31,11 @@ public class EmployeeController {
         return "redirect:/employees/show";
     }
 
+    @RequestMapping(value = {"/employee/update/saveme"},method = RequestMethod.POST)
+    public String saveme(@ModelAttribute("employee") Employee employee) {
+        employeeDAO.saveOrUpdate(employee);
+        return "redirect:/employee/show/employee";
+    }
     @RequestMapping("/employees/add")
     public String addEmployee(Model model){
         Employee employee = new Employee();
@@ -88,16 +85,16 @@ public class EmployeeController {
         return "employees/delete-employees";
     }
 
-    @RequestMapping(value="/employees/show/{user}")
+    @RequestMapping(value="/employee/show/{user}")
     public ModelAndView viewEmployee(@PathVariable(name = "user")String user) {
-        ModelAndView mav = new ModelAndView("/employees/show-employee");
+        ModelAndView mav = new ModelAndView("/employee/show-employee");
         List<Employee> employee = new ArrayList<>();
         employee.add(employeeDAO.getByName(user));
         mav.addObject("employees", employee);
         return mav;
     }
 
-    @RequestMapping(value="/employees/update/{id}")
+    @RequestMapping(value={"/employees/update/{id}","/employee/update/{id}"})
     public ModelAndView updateEmployee(@PathVariable(name = "id")int id) {
         ModelAndView mav = new ModelAndView("/employees/update-employees");
         Employee employee = employeeDAO.get(id);

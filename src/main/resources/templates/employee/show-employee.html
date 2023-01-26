@@ -29,6 +29,12 @@
         <th>Nazwisko</th>
         <th>Data urodzenia</th>
         <th>Pesel</th>
+        <th>Data zatrudnienia</th>
+        <th>Nr konta</th>
+        <th>Email</th>
+        <th>Nr telefonu</th>
+        <th>Adres</th>
+        <th>Stanowisko</th>
       </tr>
       </thead>
       <tbody>
@@ -37,6 +43,15 @@
         <td th:text="${employee.nazwisko}">Nazwisko</td>
         <td th:text="${#dates.format(employee.data_urodzenia, 'dd-MM-yyyy')}">Data urodzenia</td>
         <td th:text="${employee.pesel}">Pesel</td>
+        <td th:text="${employee.plec}">Płeć</td>
+        <td th:text="${#dates.format(employee.data_zatrudnienia, 'dd-MM-yyyy')}">Data zatrudnienia</td>
+        <td th:text="${employee.nr_konta}">Nr konta</td>
+        <td th:text="${employee.email}">Email</td>
+        <td th:text="${employee.nr_telefonu}">Nr telefonu</td>
+        <!--<td hidden="hidden" th:display="none" th:text="${employee.nr_rozglosni}">Nr rozgłośni</td> -->
+        <td th:each="address : ${addresses}" th:if="${address.nr_adresu == employee.nr_adresu}" th:text="${address.miasto +' ul.'+ address.ulica + ' '+address.nr_lokalu}">Adres</td>
+        <td th:each="jobposition : ${jobpositions}" th:if="${jobposition.nr_stanowiska == employee.nr_stanowiska}" th:text="${jobposition.nazwa}">Stanowisko</td>
+
       </tr>
       </tbody>
     </table>
@@ -48,7 +63,7 @@
 <script th:src="@{/js/script.js}"></script>
 <script>
   function rowClicked(value){
-    location.href="/employees/update/"+value;
+    location.href="/employee/update/"+value;
   }
 </script>
 </body>

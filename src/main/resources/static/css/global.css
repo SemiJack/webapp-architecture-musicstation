@@ -5,7 +5,6 @@ body {
 
     padding-top: 71px;
     padding-bottom: 54px;
-
 }
 
 tr#content:hover {
@@ -14,4 +13,8 @@ tr#content:hover {
 body > .container{
     height: 100vh;
     background-color: rgba(255,255,254, 0.5);
+}
+
+.adm-btn{
+    width: 100px;
 }
