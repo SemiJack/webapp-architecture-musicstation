@@ -1,22 +1,6 @@
-# DEADLINE: 27.01
-## do 23.01 - do pkt 3 włącznie
+# Web Application - Spring & Oracle database
 
-najbliższy call - 15.01 (niedziela)
+My first web application, and database, and connection between thrm.
 
-1) przykład pracownika z każdą rolą
-2) pokazywanie zawartości tabel z poziomu strony (najpierw admin, potem reszta)
-3) edytowanie danych z poziomu strony
-4) ładne ubranie funkcjonalności
-5) wygląd strony
-
-
-Jacek:
-DAO, klasy obiektów
-
-Ola:
-Role (użytkownicy, enuma)
-Research - czytanie tabel z poziomu strony (demo czytanie adresów)
-
-Postanowienia językowe:
-Jeżeli nazwa jest z bazy, to po polsku
-Jeżeli nie, to po angielsku
+Made within subject called BADA (Databases and Big Data) during 22/23 semester of my studies on WUT.
+Co-author Aleksandra Michalska
