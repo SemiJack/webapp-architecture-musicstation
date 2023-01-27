@@ -21,7 +21,7 @@ public class TrackDAO implements DAO<Track> {
 
     @Override
     public Track get(int nr_nagrania) {
-        String sql = "SELECT * FROM ADRESY WHERE nr_nagrania=" + nr_nagrania;
+        String sql = "SELECT * FROM UTWORY WHERE NR_NAGRANIA=" + nr_nagrania;
         return jdbcTemplate.queryForObject(sql, BeanPropertyRowMapper.newInstance(Track.class));
     }
 
@@ -33,7 +33,7 @@ public class TrackDAO implements DAO<Track> {
     }
 
     public List<Track> getTracksAddedToBroadcast(int nr_audycji) {
-        String sql = "SELECT UTWORY.* FROM UTWORY LEFT JOIN NAGRANIA ON NAGRANIA.nr_nagrania = UTWORY.nr_nagrania WHERE UTWORY.NR_NAGRANIA IN (SELECT NAGRANIE_AUDYCJA.NR_NAGRANIA FROM NAGRANIE_AUDYCJA WHERE NR_AUDYCJI=?)";
+        String sql = "SELECT * FROM UTWORY LEFT JOIN NAGRANIA ON NAGRANIA.nr_nagrania = UTWORY.nr_nagrania WHERE UTWORY.NR_NAGRANIA IN (SELECT NAGRANIE_AUDYCJA.NR_NAGRANIA FROM NAGRANIE_AUDYCJA WHERE NR_AUDYCJI=?)";
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Track.class), nr_audycji);
     }
 
