@@ -43,7 +43,11 @@
 
         <tr>
           <td>Plec</td>
-          <td><input type="text" pattern="[K|M]{1}" th:field="*{plec}" th:required="required"></td>
+          <td>
+            <select th:field="*{plec}" th:required="required">
+              <option th:value="K" th:text="Kobieta"></option>
+              <option th:value="M" th:text="Mężczyzna"></option>
+            </select>
         </tr>
 
         <tr>
@@ -130,7 +134,11 @@
 
         <tr>
           <td>Plec</td>
-          <td><input type="text" pattern="[K|M]{1}" th:field="*{plec}" th:required="required"></td>
+          <td>
+            <select th:field="*{plec}" th:required="required">
+              <option th:value="K" th:text="Kobieta"></option>
+              <option th:value="M" th:text="Mężczyzna"></option>
+            </select>
         </tr>
 
         <tr>
@@ -170,11 +178,8 @@
         <tr>
           <td>Stanowisko</td>
           <td>
-            <select th:field="*{nr_stanowiska}" th:required="required" disabled>
-              <option th:each="jobposition: ${jobpositions}"
-                      th:value="${jobposition.nr_stanowiska}"
-                      th:text="${jobposition.nazwa}">
-              </option>
+            <select th:field="*{nr_stanowiska}">
+              <option th:each="jobpositions: ${jobpositions}" th:if="${jobpositions.nr_stanowiska == employees.nr_stanowiska}" th:value="*{nr_stanowiska}" th:text="${jobpositions.nazwa}" th:required="required" readonly="readonly"></option>
             </select>
           </td>
         </tr>

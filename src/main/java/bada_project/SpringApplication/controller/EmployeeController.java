@@ -90,6 +90,10 @@ public class EmployeeController {
     @RequestMapping(value = "/employee/show/{user}")
     public ModelAndView viewEmployee(@PathVariable(name = "user") String user) {
         ModelAndView mav = new ModelAndView("/employee/show-employee");
+        List<Address> addresses = addressDAO.getAll();
+        List<Jobposition> jobpositions = jobpositionDAO.getAll();
+        mav.addObject("jobpositions", jobpositions);
+        mav.addObject("addresses", addresses);
         List<Employee> employee = new ArrayList<>();
         employee.add(employeeDAO.getByName(user));
         mav.addObject("employees", employee);
