@@ -1,6 +1,6 @@
-# Web Application - Spring & Oracle database
+# Web Application in Spring & Oracle database
 
-My first web application, and database, and connection between thrm.
+My first web application with database connection.
 
-Made within subject called BADA (Databases and Big Data) during 22/23 semester of my studies on WUT.
+Created during course called BADA (Databases and Big Data) during 22/23 semester of my studies on WUT.
 Co-author Aleksandra Michalska
